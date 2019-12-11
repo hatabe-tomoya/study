@@ -12,7 +12,7 @@
         <link rel="dns-prefetch" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
         <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
-        <link href="{{ secure_asset('css/profile.css') }}" rel="stylesheet">
+        <link href="{{ secure_asset('css/admin.css') }}" rel="stylesheet">
     </head>
     <body>
         <div id="app">
@@ -34,11 +34,10 @@
 
                         <!-- Right Side Of Navbar -->
                         <ul class="navbar-nav ml-auto">
-                             <ul class="navbar-nav ml-auto">
                         {{-- ログインしていなかったらログイン画面へのリンクを表示 --}}
                         @guest
                             <li><a class="nav-link" href="{{ route('login') }}">{{ __('messages.Login') }}</a></li>
-                            <li><a class="nav-link" href="#">{{ __('messages.Sign Up') }}</a></li>
+                            <li><a class="nav-link" href="#">新規登録</a></li>
                         {{-- ログインしていたらユーザー名とログアウトボタンを表示 --}}
                         @else
                             <nav class="navbar navbar-expand-sm navbar-dark bg-dark mt-3 mb-3">
@@ -73,10 +72,7 @@
                     </div>
                 </div>
             </nav>
-           
-
             <main class="py-4">
-               
                 @yield('content')
             </main>
         </div>
