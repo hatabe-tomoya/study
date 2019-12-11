@@ -10,4 +10,8 @@ class PostController extends Controller
     public function add() {
         return view('admin.post.create');
     }
+    
+    public function create() {
+        redirect('admin/post/create');
+    } 
 }

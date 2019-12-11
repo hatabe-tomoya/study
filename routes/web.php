@@ -15,10 +15,11 @@ Route::get('/', function () {
     return view('top');
 });
 
-Route::group(['prefix' => 'admin'], function() {
-    Route::get('post/create', 'Admin\PostController@add')->middleware('auth');
-    Route::get('profile/create', 'Admin\ProfileController@add');
-    Route::get('profile/edit', 'Admin\ProfileController@edit');
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
+    Route::get('post/create', 'Admin\PostController@add');
+    Route::get('user/create', 'Admin\UserController@add');
+    Route::get('user/edit', 'Admin\UserController@edit');
+    Route::post('post/create', 'Admin\PostController@create');
 });
 
 Auth::routes();
