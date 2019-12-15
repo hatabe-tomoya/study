@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use App\Post;
+use App\Comment;
+use App\Relationship;
 
 class PostsController extends Controller
 {
@@ -11,9 +15,11 @@ class PostsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Post $post)
+    public function index(Post $post, Relationship $relationship)
     {
-        //
+       $posts = Post::all();
+       
+       return view('posts.index', ['posts' => $posts]);
     }
 
     /**
