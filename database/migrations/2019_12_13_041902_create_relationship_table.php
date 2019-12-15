@@ -14,7 +14,7 @@ class CreateRelationshipTable extends Migration
     public function up()
     {
         Schema::create('relationship', function (Blueprint $table) {
-            $table->increments('id');
+            
             $table->unsignedInteger('following_id')->comment('フォローしているユーザーID');
             $table->unsignedInteger('followed_id')->comment('フォローされているユーザーID');
             

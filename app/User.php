@@ -32,10 +32,51 @@ class User extends Authenticatable
     ];
     
    public function followers() {
-       return $this->belongsToMany('self::class', 'relationship', 'followed_id', 'following_id');
+        return $this->belongsToMany(self::class, 'relationship', 'followed_id', 'following_id');
+    }
+
+    public function follows() {
+        return $this->belongsToMany(self::class, 'relationship', 'following_id', 'followed_id');
+    }
+   
+   public function getAllUsers(Int $user_id) {
+       return $this->Where('id','<>', 'user_id' )->paginate(5);
    }
    
-   public function follows() {
-       return $this->belongsToMany('self::class','relationship', 'following_id', 'followed_id');
-   }
+    public function follow(Int $user_id) {
+        return $this->follows()->attach($user_id);
+    }
+
+    public function unfollow(Int $user_id) {
+        return $this->follows()->detach($user_id);
+    }
+
+    public function isFollowing(Int $user_id) {
+        return (boolean) $this->follows()->where('followed_id', $user_id)->first(['id']);
+    }
+
+    public function isFollowed(Int $user_id) {
+        return (boolean) $this->followers()->where('following_id', $user_id)->first(['id']);
+    }
+    
+    public function updateAccount(Array $params) {
+        if(isset($params['icon_image'])) {
+            $file_name = $params['icon_image']->store('public/icon_image/');
+            
+            $this::where('id', $this->id)
+                ->update([
+                    'name'          => $params['name'],
+                    'icon_image' => basename($file_name),
+                    'email'         => $params['email'],
+                 ]);
+        }else{
+            $this::where('id', $this->id)
+                ->update([
+                    'name'          => $params['name'],
+                    'email'         => $params['email'],
+                ]);
+        }
+        return;
+    }
+    
 }

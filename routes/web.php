@@ -11,6 +11,10 @@
 |
 */
 
+if (version_compare(PHP_VERSION, '7.2.0', '>=')) {
+    error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
+}
+
 Route::get('/', function () {
     return view('top');
 });
@@ -25,3 +29,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['middleware' => 'auth'], function() {
+    Route::resource('users','UsersController', ['only' => ['index', 'show', 'edit', 'update']] );
+    
+    Route::post('users/{user}/follow', 'UsersController@follow')->name('follow');
+    Route::delete('users/{user}/unfollow', 'UsersController@unfollow')->name('unfollow');
+    
+    Route::resource('posts', 'PostsController', ['only' => ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']]);
+});
