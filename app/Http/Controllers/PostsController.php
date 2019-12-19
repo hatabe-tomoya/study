@@ -17,7 +17,7 @@ class PostsController extends Controller
      */
     public function index(Post $post, Relationship $relationship)
     {
-       $posts = Post::all();
+       $posts = Post::latest()->paginate(6);
        
        return view('posts.index', ['posts' => $posts]);
     }
