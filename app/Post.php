@@ -44,6 +44,9 @@ class Post extends Model
     {
         $this->user_id = $user_id;
         $this->title = $data['title'];
+        $this->study_book = $data['study_book'];
+        $this->body = $data['body'];
+        $this->result = $data['result'];
         $this->save();
 
         return;

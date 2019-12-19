@@ -1,5 +1,11 @@
 @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);@charset "UTF-8";
 
+.card-body {
+  word-wrap: break-word;
+  border: solid 3px #99CCFF;
+  border-radius: 10px;
+}
+
 /*!
  * Bootstrap v4.4.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors

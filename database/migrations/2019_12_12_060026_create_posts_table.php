@@ -20,7 +20,7 @@ class CreatePostsTable extends Migration
             $table->string('study_book');
             $table->string('body');
             $table->string('result');
-            $table->string('reference_image');
+            $table->string('reference_image')->nullable();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             

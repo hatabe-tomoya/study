@@ -5,8 +5,8 @@
     <div class="row justify-content-center mb-5">
         <div class="col-md-8 mb-3">
             <div class="card">
-                <div class="card-haeder p-3 w-100 d-flex">
-                    <img src="{{ asset('storage/icon_image/' .$tweet->user->icon_image) }}" class="rounded-circle" width="50" height="50">
+                <div class="card-header p-3 w-100 d-flex">
+                    <img src="{{ asset('storage/icon_image/' .$post->user->icon_image) }}" class="rounded-circle" width="50" height="50">
                     <div class="ml-2 d-flex flex-column">
                         <p class="mb-0">{{ $post->user->name }}</p>
                         <a href="{{ url('users/' .$post->user->id) }}" class="text-secondary">{{ $post->user->screen_name }}</a>
@@ -15,9 +15,40 @@
                         <p class="mb-0 text-secondary">{{ $post->created_at->format('Y-m-d H:i') }}</p>
                     </div>
                 </div>
+                <div class="ml-2 d-flex flex-column">
+                    <p>タイトル</p>
+                </div>
                 <div class="card-body">
                     {!! nl2br(e($post->title)) !!}
                 </div>
+                
+                <div class="ml-2 d-flex flex-column">
+                    <p>参考書・教材</p>
+                </div>
+                <div class="card-body">
+                    {!! nl2br(e($post->study_book)) !!}
+                </div>
+                
+                <div class="ml-2 d-flex flex-column">
+                    <p>勉強法</p>
+                </div>
+                <div class="card-body">
+                    {!! nl2br(e($post->body)) !!}
+                </div>
+                
+                <div class="ml-2 d-flex flex-column">
+                    <p>成果</p>
+                </div>
+                <div class="card-body">
+                    {!! nl2br(e($post->result)) !!}
+                </div>
+                {{--画像へのパス処理はまだ --}}
+                <div class="image col-md-6 text-right mt-4">
+                    @if ($post->reference_image)
+                        <img src="{{ asset('storage/image/' . $post->reference_image) }}">
+                    @endif
+                </div>
+                
                 <div class="card-footer py-1 d-flex justify-content-end bg-white">
                     @if ($post->user->id === Auth::user()->id)
                         <div class="dropdown mr-3 d-flex align-items-center">
@@ -87,7 +118,7 @@
                     </li>
                 @empty
                     <li class="list-group-item">
-                        <p class="mb-0 text-secondary">コメントはまだありません。</p>
+                        <p class="mb-0 text-secondary">コメント</p>
                     </li>
                 @endforelse
                 <li class="list-group-item">
