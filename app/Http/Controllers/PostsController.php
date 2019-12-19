@@ -29,7 +29,11 @@ class PostsController extends Controller
      */
     public function create()
     {
-        //
+        $user = auth()->user();
+        
+        return view('posts.create', [
+            'user' => $user
+        ]);
     }
 
     /**
@@ -38,9 +42,18 @@ class PostsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Post $post)
     {
-        //
+        $user = auth()->user();
+        $data = $request->all();
+        $validator = Validator::make($data, [
+            'title' => ['required', 'string', 'max:140']
+        ]);
+        $validator->validate();
+        $post->postStore($user->id, $data);
+        
+        return redirect('posts');
+        
     }
 
     /**
@@ -49,9 +62,17 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Post $post, Comment $comment)
     {
-        //
+        $user = auth()->user();
+        $post = $post->getPost($post->id);
+        $comments = $comment->getComments($post->id);
+
+        return view('posts.show', [
+            'user'     => $user,
+            'post' => $post,
+            'comments' => $comments
+        ]);
     }
 
     /**
@@ -60,9 +81,19 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        //
+         $user = auth()->user();
+         $posts = $post->getEditPost($user->id, $post->id);
+         
+         if (!isset($posts)) {
+            return redirect('posts');
+        }
+        
+        return view('posts.edit', [
+            'user'   => $user,
+            'posts' => $posts
+        ]);
     }
 
     /**
@@ -72,9 +103,17 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
-        //
+         $data = $request->all();
+         $validator = Validator::make($data, [
+            'title' => ['required', 'string', 'max:140']
+        ]);
+        
+        $validator->validate();
+        $post->postUpdate($post->id, $data);
+        
+        return redirect('posts');
     }
 
     /**
@@ -83,8 +122,11 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        //
+        $user = auth()->user();
+        $post->postDestroy($user->id, $post->id);
+        
+        return back();
     }
 }
