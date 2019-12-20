@@ -37,7 +37,7 @@
                                     @if ($is_followed)
                                         <span class="mt-2 px-1 bg-secondary text-light">フォローされています</span>
                                     @endif
-                                @endif
+                                 @endif
                             </div>
                         </div>
                         <div class="d-flex justify-content-end">
