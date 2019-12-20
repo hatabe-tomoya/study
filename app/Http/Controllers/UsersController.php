@@ -8,6 +8,8 @@ use Illuminate\Validation\Rule;
 use App\User;
 use App\Post;
 use App\Relationship;
+use App\Like;
+
 
 class UsersController extends Controller
 {
@@ -52,7 +54,7 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user, Post $post, Relationship $relationship)
+    public function show(User $user, Post $post, Relationship $relationship, Like $like)
     {
         $login_user = auth()->user();
         $is_following = $login_user->isFollowing($user->id);
@@ -61,6 +63,8 @@ class UsersController extends Controller
         $post_count = $post->getPostCount($user->id);
         $follow_count = $relationship->getFollowCount($user->id);
         $follower_count = $relationship->getFollowerCount($user->id);
+        //いいねカウント
+        $like_count = $like->getLikeCount($user->id);
         
         return view('users.show', [
             'user' => $user,
@@ -69,7 +73,9 @@ class UsersController extends Controller
             'timelines'      => $timelines,
             'post_count'    => $post_count,
             'follow_count'   => $follow_count,
-            'follower_count' => $follower_count
+            'follower_count' => $follower_count,
+            //いいねカウント
+            'like_count'     => $like_count
             ]);
     }
 

@@ -53,6 +53,10 @@
                                 <p class="font-weight-bold">フォロワー</p>
                                 <span>{{ $follower_count }}</span>
                             </div>
+                            <div class="p-2 d-flex flex-column align-items-center">
+                                <p class="font-weight-bold">いいね</p>
+                                <span>{{ $like_count }}</span>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -12,7 +12,7 @@
                 <div class ="study-card p-0 col-lg-4 col-md-6 col-sm-12">
                     <div class ="card m-3">
                         <div class ="card-header">
-                          <a href ="#"> {!! nl2br(e($post->title)) !!}</a>
+                          <a href ="{{ url('posts/' .$post->id) }}" class="text-secondary">{{ $post->title }}</a>
                             <div class ="card-body">
                               <p>{!! nl2br(e($post->body)) !!}</p>
                             </div>
@@ -28,11 +28,12 @@
                                     </p>
                                 </div>
                                 <div class ="like">
-                                    <p class="float-right">
-                                        <i class="fas fa-heart fa-fw text-danger">
-                                    
-                                        </i>
-                                    </p>
+                                    <div class="float-right">
+                                        <div class="d-flex align-items-center">
+                                            <i class="fas fa-heart fa-fw text-danger"></i>
+                                                <div class="mb-0 text-secondary">{{ count($post->like) }}</div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

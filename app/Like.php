@@ -16,6 +16,12 @@ class Like extends Model
     }
     
     public $timestamps = false;
+    
+    //いいねカウント
+    public function getLikeCount($post_id)
+    {
+        return $this->where('user_id', $post_id)->count();
+    }
 
    
     public function isLike(Int $user_id, Int $post_id) 
