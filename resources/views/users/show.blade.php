@@ -67,9 +67,9 @@
                 <div class ="study-card p-0 col-lg-4 col-md-6 col-sm-12">
                     <div class ="card m-3">
                         <div class ="card-header">
-                            <img src="{{ $user->icon_image }}" class="rounded-circle" width="50" height="50">
+                            <a href ="{{ url('posts/' .$timeline->id) }}" class="text-secondary">{{ $timeline->title }}</a>
                             <div class="ml-2 d-flex flex-column flex-grow-1">
-                                <p class="mb-0">{{ $timeline->user->name }}</p>
+                                
                                 
                             </div>
                             
@@ -83,7 +83,7 @@
                                         <a href ="#">
                                             <img src ="#">
                                         </a>
-                                        <p class="mb-0">{{ $timeline->user->name }}</p>
+                                        <a href ="{{ url('users/' .$timeline->user->id) }}" class="text-secondary">{{ $timeline->user->name }}</a>
                                     </p>
                                 </div>
                                 <div class ="like">
