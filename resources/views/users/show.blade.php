@@ -2,8 +2,8 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8 mb-3">
+    <div class="row ">
+        <div class="text-center col-sm-4 ">
             <div class="card">
                 <div class="d-inline-flex">
                     <div class="p-3 d-flex flex-column">
@@ -62,50 +62,56 @@
                 </div>
             </div>
         </div>
-        @if (isset($timelines))
-            @foreach ($timelines as $timeline)
-                <div class ="study-card p-0 col-lg-4 col-md-6 col-sm-12">
-                    <div class ="card m-3">
-                        <div class ="card-header">
-                            <a href ="{{ url('posts/' .$timeline->id) }}" class="text-secondary">{{ $timeline->title }}</a>
-                            <div class="ml-2 d-flex flex-column flex-grow-1">
-                                
-                                
-                            </div>
-                            
-                        </div>
-                        <div class="card-body">
-                            {{ $timeline->body }}
-                        </div>
-                        <div class="card-footer py-1 d-flex justify-content-end bg-white">
-                            <div class ="user">
-                                    <p class ="float-left">
-                                        <a href ="#">
-                                            <img src ="#">
-                                        </a>
-                                        <a href ="{{ url('users/' .$timeline->user->id) }}" class="text-secondary">{{ $timeline->user->name }}</a>
-                                    </p>
-                                </div>
-                                <div class ="like">
-                                    <div class="float-right">
-                                        <div class="d-flex align-items-center">
-                                            <i class="fas fa-heart fa-fw text-danger"></i>
-                                                <div class="mb-0 text-secondary">{{ count($timeline->like) }}</div>
+        
+        
+        <div class ="users-study-stock p-0  col-sm-8">
+            <div class ="title text-center p-3 "><h3>作成済勉強法</h3></div>
+                <div class ="container">
+                    <div class ="row">
+                        @if (isset($timelines))
+                            @foreach ($timelines as $timeline)
+                                <div class="study-card p-0 col-lg-6 col-md-12">
+                                    <div class ="card m-3">
+                                            <div class ="card-header">
+                                                <a href ="{{ url('posts/' .$timeline->id) }}" class="text-secondary">{{ $timeline->title }}</a>
+                                                <div class="ml-2 d-flex flex-column flex-grow-1">
+                                                </div>
+                                            </div>
+                                        
+                                        <div class="card-body">
+                                            {{ $timeline->body }}
+                                        </div>
+                                        <div class="card-footer py-1  bg-white">
+                                            <div class ="user">
+                                                    <p class ="float-left">
+                                                        <a href ="#">
+                                                            <img src ="#">
+                                                        </a>
+                                                        <a href ="{{ url('users/' .$timeline->user->id) }}" class="text-secondary">{{ $timeline->user->name }}</a>
+                                                    </p>
+                                                </div>
+                                                <div class="float-right">
+                                                    <div class ="like">
+                                                        <div class="d-flex align-items-center">
+                                                            <i class="fas fa-heart fa-fw text-danger"></i>
+                                                                <div class="mb-0 text-secondary">{{ count($timeline->like) }}</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            <div class="d-flex align-items-center">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                           
-                            <div class="d-flex align-items-center">
-                                
-                            </div>
-                        </div>
+                            @endforeach
+                        @endif
                     </div>
                 </div>
-            @endforeach
-        @endif
-    </div>
-    <div class="my-4 d-flex justify-content-center">
-        {{ $timelines->links() }}
-    </div>
+        　　</div>
+    　　</div>
+        <div class="my-4 d-flex justify-content-center">
+            {{ $timelines->links() }}
+        </div>
+　　</div>
 </div>
 @endsection
