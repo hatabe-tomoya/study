@@ -147,4 +147,32 @@ class UsersController extends Controller
             return back();
         }
     }
+    
+   //フォロー一覧を表示させるための処理
+     public function followindex(User $user, Post $post, Relationship $relationship, Like $like)
+    {
+        $login_user = auth()->user();
+        $is_following = $login_user->isFollowing($user->id);
+        $is_followed = $login_user->isFollowed($user->id);
+        $timelines = $post->getUserTimeLine($user->id);
+        $post_count = $post->getPostCount($user->id);
+        $follow_count = $relationship->getFollowCount($user->id);
+        $follower_count = $relationship->getFollowerCount($user->id);
+        //いいねカウント
+        $like_count = $like->getLikeCount($user->id);
+        
+        return view('users.follows_index', [
+            'user' => $user,
+            'is_following'   => $is_following,
+            'is_followed'    => $is_followed,
+            'timelines'      => $timelines,
+            'post_count'    => $post_count,
+            'follow_count'   => $follow_count,
+            'follower_count' => $follower_count,
+            //いいねカウント
+            'like_count'     => $like_count
+            ]);
+    }
+  
+    
 }

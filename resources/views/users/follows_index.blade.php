@@ -77,7 +77,7 @@
         
         
         <div class ="users-study-stock p-0  col-sm-8">
-            <div class ="title text-center p-3 "><h3>作成済勉強法</h3></div>
+            <div class ="title text-center p-3 "><h3>フォロー</h3></div>
                 <div class ="container">
                     <div class ="row">
                         @if (isset($timelines))
