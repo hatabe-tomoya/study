@@ -83,7 +83,7 @@ class User extends Authenticatable
    public function getTimeLines(Int $user_id, Array $follow_ids)
     {
         // 自身とフォローしているユーザIDを結合する
-        $follow_ids[] = $user_id;
+        
         return $this->whereIn('id', $follow_ids)->orderBy('created_at', 'DESC')->paginate(50);
     }
 }
