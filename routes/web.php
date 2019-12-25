@@ -35,6 +35,9 @@ Route::group(['middleware' => 'auth'], function() {
     
     //フォロー一覧を表示させるためのルート
     Route::get('users/{user}/follows_index', 'UsersController@followindex');
+    //フォロワ一覧を表示させるためのルート
+    Route::get('users/{user}/followers_index', 'UsersController@followerindex');
+    
     
     Route::post('users/{user}/follow', 'UsersController@follow')->name('follow');
     Route::delete('users/{user}/unfollow', 'UsersController@unfollow')->name('unfollow');

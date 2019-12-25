@@ -167,11 +167,47 @@ class UsersController extends Controller
         // followed_idだけ抜き出す
         $following_ids = $follow_ids->pluck('followed_id')->toArray();
 
-        $timelines = $user->getTimelines($user->id, $following_ids);
+        $timelines = $user->getFollowTimelines($user->id, $following_ids);
 
        
         
         return view('users.follows_index', [
+            'user' => $user,
+            'is_following'   => $is_following,
+            'is_followed'    => $is_followed,
+            'timelines'      => $timelines,
+            'post_count'    => $post_count,
+            'follow_count'   => $follow_count,
+            'follower_count' => $follower_count,
+            //いいねカウント
+            'like_count'     => $like_count,
+            ]);
+    }
+    
+    //フォロワー一覧を表示させるための処理
+     public function followerindex(User $user, Post $post, Relationship $relationship, Like $like)
+    {
+        $login_user = auth()->user();
+        $is_following = $login_user->isFollowing($user->id);
+        $is_followed = $login_user->isFollowed($user->id);
+        //$timelines = $post->getUserTimeLine($user->id);
+        $post_count = $post->getPostCount($user->id);
+        $follow_count = $relationship->getFollowCount($user->id);
+        $follower_count = $relationship->getFollowerCount($user->id);
+        //いいねカウント
+        $like_count = $like->getLikeCount($user->id);
+        
+        //フォローユーザー取得
+        $user = auth()->user();
+        $follower_ids = $relationship->followedIds($user->id);
+        // followed_idだけ抜き出す
+        $followed_ids = $follower_ids->pluck('following_id')->toArray();
+
+        $timelines = $user->getFollowerTimelines($user->id, $followed_ids);
+
+       
+        
+        return view('users.followers_index', [
             'user' => $user,
             'is_following'   => $is_following,
             'is_followed'    => $is_followed,

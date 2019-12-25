@@ -80,10 +80,18 @@ class User extends Authenticatable
     }
     
    //フォローユーザー取得
-   public function getTimeLines(Int $user_id, Array $follow_ids)
+   public function getFollowTimeLines(Int $user_id, Array $follow_ids)
     {
         // 自身とフォローしているユーザIDを結合する
         
         return $this->whereIn('id', $follow_ids)->orderBy('created_at', 'DESC')->paginate(50);
+    }
+    
+    //フォロワーユーザー取得
+   public function getFollowerTimeLines(Int $user_id, Array $follower_ids)
+    {
+        // 自身とフォローしているユーザIDを結合する
+        
+        return $this->whereIn('id', $follower_ids)->orderBy('created_at', 'DESC')->paginate(50);
     }
 }
