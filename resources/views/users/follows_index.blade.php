@@ -33,8 +33,8 @@
                                             <button type="submit" class="btn btn-primary">フォローする</button>
                                         </form>
                                     @endif
-
-                                    @if ($is_followed)
+                                    
+                                     @if ($is_followed)
                                         <span class="mt-2 px-1 bg-secondary text-light">フォローされています</span>
                                     @endif
                                  @endif
@@ -75,8 +75,7 @@
             </div>
         </div>
         
-        
-        <div class ="users-study-stock p-0  col-sm-8">
+           <div class ="users-study-stock p-0  col-sm-8">
             <div class ="title text-center p-3 "><h3>フォロー</h3></div>
                 <div class ="container">
                     <div class ="row">
@@ -85,12 +84,15 @@
                                 <div class="study-card p-0 col-lg-6 col-md-12">
                                     <div class ="card m-3">
                                             <div class ="card-header">
-                                                <a href ="{{ url('posts/' .$timeline->id) }}" class="text-secondary">{{ $timeline->title }}</a>
+                                                <a href ="{{ url('posts/' .$timeline->id) }}" class="text-secondary">{{ $timeline->name }}</a>
                                                 <div class="ml-2 d-flex flex-column flex-grow-1">
                                                 </div>
                                             </div>
                                         
-                                        <div class="card-body">
+                                        
+                                        
+                                            
+                                            <div class="card-body">
                                             {{ $timeline->body }}
                                         </div>
                                         <div class="card-footer py-1  bg-white">
