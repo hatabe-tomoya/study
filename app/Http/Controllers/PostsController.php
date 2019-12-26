@@ -8,6 +8,7 @@ use App\Post;
 use App\Comment;
 use App\Relationship;
 
+
 class PostsController extends Controller
 {
     /**
@@ -132,4 +133,6 @@ class PostsController extends Controller
         
         return back();
     }
+    
+   
 }

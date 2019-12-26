@@ -42,5 +42,11 @@ class Like extends Model
     {
         return $this->where('id', $like_id)->delete();
     }
+    
+     //いいねユーザー取得
+   public function getLikeTimeLines(Int $user_id)
+    {
+        return $this->where('user_id', $user_id)->orderBy('created_at', 'DESC')->paginate(50);
+    }
 
 }

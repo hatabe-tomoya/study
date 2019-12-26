@@ -37,6 +37,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('users/{user}/follows_index', 'UsersController@followindex');
     //フォロワ一覧を表示させるためのルート
     Route::get('users/{user}/followers_index', 'UsersController@followerindex');
+    //いいね一覧を表示させるためのルート
+    Route::get('users/{user}/likes_index', 'UsersController@likeindex');
     
     
     Route::post('users/{user}/follow', 'UsersController@follow')->name('follow');
