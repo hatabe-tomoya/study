@@ -91,7 +91,7 @@
                                             </div>
                                         
                                         <div class="card-body">
-                                            {{ $timeline->body }}
+                                            {{ $timeline->post->body }}
                                         </div>
                                         <div class="card-footer py-1  bg-white">
                                             <div class ="user">
