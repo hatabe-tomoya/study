@@ -17,7 +17,7 @@
                         <div class="profile-edit d-flex justify-content-center">
                             <div>
                                 @if ($user->id === Auth::user()->id)
-                                    <a href="{{ url('users/' .$user->id .'/edit') }}" class="btn btn-primary">プロフィールを編集する</a>
+                                    <a href="{{ url('users/' .$user->id .'/edit') }}" class="btn btn-primary">アカウントを編集する</a>
                                 @else
                                     @if ($is_following)
                                         <form action="{{ route('unfollow', ['id' => $user->id]) }}" method="POST">
@@ -44,12 +44,13 @@
                             <div class="follow-link">
                                 <div class="users-follow-link d-flex justify-content-around">
                                      <div class="profile-follow-count ">
-                                        
-                                        <a href="#" class="font-weight-bold">フォロー</a>
+                                        {{--フォローへのリンク--}}
+                                        <a href="{{ url('users/' .$user->id .'/follows_index') }}" class="font-weight-bold">フォロー</a>
                                         <p class ="follow-count d-flex justify-content-center">{{ $follow_count }}</p>
                                     </div>
                                     <div class="profile-follower-count ">
-                                        <a href="#" class="font-weight-bold">フォロワー</a>
+                                        {{--フォロワーへのリンク--}}
+                                        <a href="{{ url('users/' .$user->id .'/followers_index') }}" class="font-weight-bold">フォロワー</a>
                                         <p class="follower-count d-flex justify-content-center">{{ $follower_count }}</p>
                                     </div>
                                 </div>
@@ -62,7 +63,7 @@
                                         <p class="study-count d-flex justify-content-center">{{ $post_count }}</p>
                                     </div>
                                     <div class="profile-like-count ">
-                                        <a href="#" class="font-weight-bold">いいね</a>
+                                        <a href="{{ url('users/' .$user->id .'/likes_index') }}" class="font-weight-bold">いいね</a>
                                         <p class="like-count d-flex justify-content-center">{{ $like_count }}</p>
                                     </div>
                                 </div>
