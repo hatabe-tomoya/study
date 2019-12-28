@@ -31,7 +31,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => 'auth'], function() {
-    Route::resource('users','UsersController', ['only' => ['index', 'show', 'edit', 'update']] );
+    Route::resource('users','UsersController', ['only' => ['show', 'edit', 'update']] );
     
     //フォロー一覧を表示させるためのルート
     Route::get('users/{user}/follows_index', 'UsersController@followindex');
@@ -39,6 +39,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('users/{user}/followers_index', 'UsersController@followerindex');
     //いいね一覧を表示させるためのルート
     Route::get('users/{user}/likes_index', 'UsersController@likeindex');
+    
     
     
     Route::post('users/{user}/follow', 'UsersController@follow')->name('follow');

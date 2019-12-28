@@ -57,7 +57,7 @@
                                             <a class="nav-link" href="{{url('posts/create')}}">勉強法作成</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="{{ url('users/' .$user->id ) }}">{{ Auth::user()->name }} </a>
+                                            <a class="nav-link" href="{{ url('users/' .$user->id) }}">{{ Auth::user()->name }} </a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" onclick="event.preventDefault();

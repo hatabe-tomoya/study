@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Post;
 use App\Comment;
 use App\Relationship;
+use App\User;
 
 
 class PostsController extends Controller
@@ -16,12 +17,14 @@ class PostsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Post $post, Relationship $relationship)
+   public function index(Post $post, Relationship $relationship)
     {
        $posts = Post::latest()->paginate(6);
+       $user = auth()->user();
        
-       return view('posts.index', ['posts' => $posts]);
+       return view('posts.index', ['posts' => $posts, 'user' => $user]);
     }
+
 
     /**
      * Show the form for creating a new resource.
