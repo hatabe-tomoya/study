@@ -121,6 +121,18 @@
                             </div>
                         </div>
                     </form>
+                        <div class="form-group row mb-0">
+                            <form method="POST" action="{{ url('users/' .$user->id) }}" class="mb-0">
+                                @csrf
+                                @method('DELETE')
+                                
+                                <div class="justify-content-center">
+                                    <h3>アカウント削除</h3>
+                                    <button type="submit" class="btn btn-danger">削除</button>
+                               </div>
+                            </form>
+                        </div>
+                    
                 </div>
             </div>
         </div>

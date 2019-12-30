@@ -31,7 +31,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => 'auth'], function() {
-    Route::resource('users','UsersController', ['only' => ['show', 'edit', 'update']] );
+    Route::resource('users','UsersController', ['only' => ['show', 'edit', 'update', 'destroy']] );
     
     //フォロー一覧を表示させるためのルート
     Route::get('users/{user}/follows_index', 'UsersController@followindex');
