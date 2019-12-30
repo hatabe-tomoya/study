@@ -9,6 +9,8 @@ use App\User;
 use App\Post;
 use App\Relationship;
 use App\Like;
+use Auth;
+use Hash;
 
 
 class UsersController extends Controller
@@ -99,16 +101,38 @@ class UsersController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $data = $request->all();
-        $validator = Validator::make($data, [
-            'name'          => ['required', 'string', 'max:255'],
-            'icon_image'    => ['file', 'image', 'mimes:jpeg,png,jpg', 'max:2048'],
-            'email'         => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)]
-            ]);
-            
-        $validator->validate();
-        $user->updateAccount($data);
+        $this->validate($request, User::$rules);
+        $user = User::find($request->id);
+        $user_form = $request->all();
         
+        if (isset($user_form['icon_image'])) {
+        $path = $request->file('icon_image')->store('public/icon_image');
+        $user->icon_image = basename($path);
+        unset($news_form['icon_image']);
+      } elseif (isset($request->remove)) {
+        $user->icon_image = null;
+        unset($user_form['remove']);
+      }
+      unset($user_form['_token']);
+      
+        //$user->updateAccount($data);
+        
+          
+        
+        //現在のパスワードが正しいかを調べる
+         if(!(Hash::check($request->get('current-password'), auth()->user()->password))) {
+            return redirect()->back()->with('change_password_error', '現在のパスワードが間違っています。');
+        }
+        //現在のパスワードと新しいパスワードが違っているかを調べる
+        if(strcmp($request->get('current-password'), $request->get('new-password')) == 0) {
+            return redirect()->back()->with('change_password_error', '新しいパスワードが現在のパスワードと同じです。違うパスワードを設定してください。');
+        }
+         //パスワードを変更
+        $user = auth()->user();
+        $user->password = bcrypt($request->get('new-password'));
+        $user->fill($user_form)->save();
+
+
         return redirect('users/'.$user->id);
 
     }

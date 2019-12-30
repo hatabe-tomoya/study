@@ -3,6 +3,8 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Hash;
+
 class User extends Authenticatable
 {
     use Notifiable;
@@ -30,6 +32,19 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    //アカウント編集用バリデーション
+    protected $guarded = array('id');
+
+    // 以下を追記
+    public static $rules = array(
+        'name' => 'required|string|max:255',
+        'icon_image' => 'file|image|mimes:jpeg,png,jpg|max:2048',
+        'email' => 'required|string|email|max:255',
+        'current-password' => 'required',
+        'new-password' => 'required|string|min:8|confirmed'
+    );
+    
     
    public function followers() {
         return $this->belongsToMany(self::class, 'relationship', 'followed_id', 'following_id');
@@ -59,25 +74,28 @@ class User extends Authenticatable
         return (boolean) $this->followers()->where('following_id', $user_id)->first(['id']);
     }
     
-    public function updateAccount(Array $params) {
-        if(isset($params['icon_image'])) {
-            $file_name = $params['icon_image']->store('public/icon_image/');
+    /*public function updateAccount(Request $request) {
+        if(isset($data['icon_image'])) {
+            $file_name = $request->file('icon_image')->store('public/icon_image/');
             
             $this::where('id', $this->id)
                 ->update([
                     'name'          => $params['name'],
                     'icon_image' => basename($file_name),
                     'email'         => $params['email'],
+                    'password' => $params['password']->bcrypt($request->get('new-password'))
                  ]);
         }else{
             $this::where('id', $this->id)
                 ->update([
                     'name'          => $params['name'],
                     'email'         => $params['email'],
+                    'password' => Hash::make($params['password']),
                 ]);
         }
         return;
     }
+    */
     
    //フォローユーザー取得
    public function getFollowTimeLines(Int $user_id, Array $follow_ids)

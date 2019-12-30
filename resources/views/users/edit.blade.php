@@ -6,6 +6,23 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">アカウント編集</div>
+                
+                {{--エラーメッセージ用 --}}
+                        @if (session('change_password_error'))
+                  <div class="container mt-2">
+                    <div class="alert alert-danger">
+                      {{session('change_password_error')}}
+                    </div>
+                  </div>
+                @endif
+        
+                @if (session('change_password_success'))
+                  <div class="container mt-2">
+                    <div class="alert alert-success">
+                      {{session('change_password_success')}}
+                    </div>
+                  </div>
+                @endif
 
                 <div class="card-body">
                     <form method="POST" action="{{ url('users/' .$user->id) }}" enctype="multipart/form-data">
@@ -16,7 +33,7 @@
                             <label for="icon_image" class="col-md-4 col-form-label text-md-right">{{ __('messages.Icon Image') }}</label>
 
                             <div class="col-md-6 d-flex align-items-center">
-                                <img src=src="{{ asset('storage/icon_image/' .$user->icon_image) }}" class="mr-2 rounded-circle" width="80" height="80" alt="icon_image">
+                                <img src="{{ asset('storage/icon_image/' .$user->icon_image) }}" class="mr-2 rounded-circle" width="80" height="80" alt="icon_image">
                                 <input type="file" name="icon_image" class="@error('icon_image') is-invalid @enderror" autocomplete="icon_image">
 
                                 @error('icon_image')
@@ -24,6 +41,11 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="checkbox" class="form-check-input" name="remove" value="true">画像を削除
+                                </label>
                             </div>
                         </div>
                         
@@ -58,10 +80,10 @@
                         </div>
                         
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('messages.Current Password') }}</label>
+                            <label for="current" class="col-md-4 col-form-label text-md-right">{{ __('messages.Current Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <input id="current" type="password" class="form-control @error('password') is-invalid @enderror" name="current-password" required>
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -75,7 +97,7 @@
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('messages.New Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="new-password" required>
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -86,10 +108,10 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('messages.Confirm Password') }}</label>
+                            <label for="confirm" class="col-md-4 col-form-label text-md-right">{{ __('messages.Confirm Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                <input id="confirm" type="password" class="form-control" name="new-password_confirmation" required>
                             </div>
                         </div>
 
