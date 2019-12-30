@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -117,18 +119,18 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">更新する</button>
+                                <input type="submit" value="更新" class="btn btn-primary btn-sm" >
                             </div>
                         </div>
                     </form>
-                        <div class="form-group row mb-0">
+                        <div class="center-block">
                             <form method="POST" action="{{ url('users/' .$user->id) }}" class="mb-0">
                                 @csrf
                                 @method('DELETE')
                                 
-                                <div class="justify-content-center">
-                                    <h3>アカウント削除</h3>
-                                    <button type="submit" class="btn btn-danger">削除</button>
+                                <div class="col-md-6 offset-md-4">
+                                    <h4>アカウント削除</h4>
+                                    <input type="submit" value="削除" class="btn btn-danger btn-sm" onclick='return confirm("本当に削除しますか？");'>
                                </div>
                             </form>
                         </div>
