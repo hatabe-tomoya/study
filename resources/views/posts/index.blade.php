@@ -14,7 +14,7 @@
                         <div class ="card-header">
                           <a href ="{{ url('posts/' .$post->id) }}" class="text-secondary">{{ $post->title }}</a>
                             <div class ="card-body">
-                              <p>{!! nl2br(e($post->body)) !!}</p>
+                              <p>{!! nl2br(e(str_limit($post->body, 30))) !!}</p>
                             </div>
                             <div class ="card-footer">
                                 <div class ="user">
