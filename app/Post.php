@@ -61,6 +61,9 @@ class Post extends Model
     {
         $this->id = $post_id;
         $this->title = $data['title'];
+        $this->study_book = $data['study_book'];
+        $this->body = $data['body'];
+        $this->result = $data['result'];
         $this->update();
 
         return;

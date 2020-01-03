@@ -109,6 +109,6 @@ class User extends Authenticatable
         return $this->whereIn('id', $follower_ids)->orderBy('created_at', 'DESC')->paginate(50);
     }
     
-    
+   
    
 }

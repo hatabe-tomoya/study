@@ -41,7 +41,7 @@
                         {{-- ログインしていなかったらログイン画面へのリンクを表示 --}}
                         @guest
                             <li><a class="nav-link" href="{{ route('login') }}">{{ __('messages.Login') }}</a></li>
-                            <li><a class="nav-link" href="#">新規登録</a></li>
+                            <li><a class="nav-link" href="{{ route('register') }}">新規登録</a></li>
                         {{-- ログインしていたらユーザー名とログアウトボタンを表示 --}}
                         @else
                             <nav class="navbar navbar-expand-sm  mt-3 mb-3">

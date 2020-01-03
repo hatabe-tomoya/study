@@ -19,7 +19,7 @@
                                 </div>
                             </div>
                             <div class="col-md-12">
-                                <textarea class="form-control @error('title') is-invalid @enderror" name="title" required autocomplete="title" rows="4">{{ old('title') }}</textarea>
+                                <textarea class="form-control @error('title') is-invalid @enderror" name="title" required autocomplete="title" rows="2">{{ old('title') }}</textarea>
 
                                 @error('title')
                                     <span class="invalid-feedback" role="alert">
@@ -37,7 +37,7 @@
                                 </div>
                             </div>
                             <div class="col-md-12">
-                                <textarea class="form-control @error('study_book') is-invalid @enderror" name="study_book" required autocomplete="study_book" rows="4">{{ old('study_book') }}</textarea>
+                                <textarea class="form-control @error('study_book') is-invalid @enderror" name="study_book" required autocomplete="study_book" rows="2">{{ old('study_book') }}</textarea>
 
                                 @error('study_book')
                                     <span class="invalid-feedback" role="alert">
@@ -55,7 +55,7 @@
                                 </div>
                             </div>
                             <div class="col-md-12">
-                                <textarea class="form-control @error('body') is-invalid @enderror" name="body" required autocomplete="body" rows="4">{{ old('body') }}</textarea>
+                                <textarea class="form-control @error('body') is-invalid @enderror" name="body" required autocomplete="body" rows="12">{{ old('body') }}</textarea>
 
                                 @error('body')
                                     <span class="invalid-feedback" role="alert">
@@ -73,7 +73,7 @@
                                 </div>
                             </div>
                             <div class="col-md-12">
-                                <textarea class="form-control @error('result') is-invalid @enderror" name="result" required autocomplete="result" rows="4">{{ old('result') }}</textarea>
+                                <textarea class="form-control @error('result') is-invalid @enderror" name="result" requied autocomplete="result" rows="2">{{ old('title') }}</textarea>
 
                                 @error('result')
                                     <span class="invalid-feedback" role="alert">
@@ -83,12 +83,7 @@
                             </div>
                         </div>
                         
-                        <div class="form-group row mb-0">
-                            <label class="col-md-2" for="title">画像</label>
-                        <div class="col-md-10">
-                            <input type="file" class="form-control-file" name="reference_image">
-                        </div>
-                    </div>
+                       
                         
                         <div class="form-group row mb-0">
                             <div class="col-md-12 text-center">

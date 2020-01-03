@@ -81,11 +81,13 @@
                             </div>
                         </div>
                         
-                        <div class="form-group row">
-                            <label for="current" class="col-md-4 col-form-label text-md-right">{{ __('messages.Current Password') }}</label>
+                        
+                        
+                         <div class="form-group row">
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('messages.New Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="current" type="password" class="form-control @error('password') is-invalid @enderror" name="current-password" required>
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="new-password"required >
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -95,11 +97,11 @@
                             </div>
                         </div>
                         
-                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('messages.New Password') }}</label>
+                        <div class="form-group row">
+                            <label for="current" class="col-md-4 col-form-label text-md-right">{{ __('messages.Current Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="new-password" required>
+                                <input id="current" type="password" class="form-control @error('password') is-invalid @enderror" name="current-password" required>
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">

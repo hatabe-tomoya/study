@@ -42,12 +42,7 @@
                 <div class="card-body">
                     {!! nl2br(e($post->result)) !!}
                 </div>
-                {{--画像へのパス処理はまだ --}}
-                <div class="image col-md-6 text-right mt-4">
-                    @if ($post->reference_image)
-                        <img src="{{ asset('storage/image/' . $post->reference_image) }}">
-                    @endif
-                </div>
+                
                 
                 <div class="card-footer py-1 d-flex justify-content-end bg-white">
                     @if ($post->user->id === Auth::user()->id)

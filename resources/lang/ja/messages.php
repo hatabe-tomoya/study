@@ -13,4 +13,5 @@ return [
     'Register'         => '登録',
     'Sign Up'          => '新規登録',
     'Icon Image'       => 'アイコン',
+    'Account Create'   => '新規アカウント登録'
 ];

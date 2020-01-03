@@ -89,7 +89,9 @@ class UsersController extends Controller
      */
     public function edit(User $user) 
     {
-         return view('users.edit', ['user' => $user]);
+         $user = auth()->user();
+         
+         return view('users.edit', ['user' => $user,]);
     }
 
     /**
@@ -131,7 +133,6 @@ class UsersController extends Controller
         $user = auth()->user();
         $user->password = bcrypt($request->get('new-password'));
         $user->fill($user_form)->save();
-
 
         return redirect('users/'.$user->id);
 
@@ -283,6 +284,9 @@ class UsersController extends Controller
             ]);
     }
     
+    
+   
+        
     
   
   

@@ -114,7 +114,10 @@ class PostsController extends Controller
     {
          $data = $request->all();
          $validator = Validator::make($data, [
-            'title' => ['required', 'string', 'max:140']
+            'title'      => ['required', 'string'],
+            'study_book' => ['required', 'string'],
+            'body'       => ['required', 'string'],
+            'result'     => ['required', 'string']
         ]);
         
         $validator->validate();
