@@ -13,20 +13,20 @@
                     <div class ="card m-3">
                         <div class ="card-header">
                           <a href ="{{ url('posts/' .$post->id) }}" class="text-secondary">{{ $post->title }}</a>
-                            <div class ="card-body">
-                              <p>{!! nl2br(e(str_limit($post->body, 30))) !!}</p>
+                        </div>
+                        <div class ="card-body">
+                          {!! nl2br(e(str_limit($post->body, 40))) !!}
+                        </div>
+                        <div class="card-footer py-1  bg-white">
+                            <div class ="user">
+                                <p class ="float-left mb-1">
+                                    <a href ="#">
+                                        <img src ="#">
+                                    </a>
+                                    <a href ="{{ url('users/' .$post->user->id) }}" class="text-secondary">{{ $post->user->name }}</a>
+                                </p>
                             </div>
-                            <div class ="card-footer">
-                                <div class ="user">
-                                    <p class ="float-left">
-                                        <a href ="#">
-                                            <img src ="#">
-                                        </a>
-                                        <div class="ml-2 d-flex flex-column">
-                                           <a href ="{{ url('users/' .$post->user->id) }}" class="text-secondary">{{ $post->user->name }}</a>
-                                        </div>
-                                    </p>
-                                </div>
+                            <div class="float-right ">
                                 <div class ="like">
                                     <div class="d-flex flex-row-reverse">
                                         <div class="d-flex align-items-center">
@@ -41,7 +41,6 @@
                 </div>
             @endforeach
         </div>
-        
         <div class="my-4 d-flex justify-content-center">
             {{ $posts->links() }}
         </div>

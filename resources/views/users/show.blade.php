@@ -85,32 +85,33 @@
                             @foreach ($timelines as $timeline)
                                 <div class="study-card p-0 col-lg-6 col-md-12">
                                     <div class ="card m-3">
-                                            <div class ="card-header">
-                                                <a href ="{{ url('posts/' .$timeline->id) }}" class="text-secondary">{{ $timeline->title }}</a>
-                                                <div class="ml-2 d-flex flex-column flex-grow-1">
-                                                </div>
-                                            </div>
-                                        
+                                        <div class ="card-header">
+                                            <a href ="{{ url('posts/' .$timeline->id) }}" class="text-secondary">{{ $timeline->title }}</a>
+                                        </div>
                                         <div class="card-body">
                                             {!! nl2br(e(str_limit($timeline->body, 50))) !!}
                                         </div>
                                         <div class="card-footer py-1  bg-white">
                                             <div class ="user">
-                                                    <p class ="float-left mb-1">
-                                                        <a href ="#">
-                                                            <img src ="#">
-                                                        </a>
+                                                <p class ="float-left mb-1">
+                                                    <a href ="#">
+                                                        <img src ="#">
+                                                    </a>
+                                                    <div class="ml-2 d-flex flex-column">
                                                         <a href ="{{ url('users/' .$timeline->user->id) }}" class="text-secondary">{{ $timeline->user->name }}</a>
-                                                    </p>
-                                                </div>
-                                                <div class="float-right ">
-                                                    <div class ="like">
+                                                    </div>
+                                                </p>
+                                            </div>
+                                            <div class="float-right ">
+                                                <div class ="like">
+                                                    <div class="d-flex flex-row-reverse">
                                                         <div class="d-flex align-items-center">
                                                             <i class="fas fa-heart fa-fw text-danger"></i>
                                                                 <div class="mb-0 text-secondary">{{ count($timeline->like) }}</div>
                                                         </div>
                                                     </div>
                                                 </div>
+                                            </div>
                                             
                                         </div>
                                     </div>
