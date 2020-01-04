@@ -41,7 +41,7 @@
                             </div>
                         </div>
                         <div class="profile-counts ">
-                            <div class="follow-link">
+                            <div class="follow-link mt-4">
                                 <div class="users-follow-link d-flex justify-content-around">
                                      <div class="profile-follow-count ">
                                         
@@ -56,12 +56,12 @@
                             </div>
                             <div class="study-like-link">
                                 <div class="users-study-like-link d-flex justify-content-around">
-                                    <div class="profile-study-count ">
+                                    <div class="profile-study-count mr-2">
                                         
                                         <a href="{{ url('users/' .$user->id ) }}" class="font-weight-bold">作成済勉強法</a>
                                         <p class="study-count d-flex justify-content-center">{{ $post_count }}</p>
                                     </div>
-                                    <div class="profile-like-count ">
+                                    <div class="profile-like-count pr-3">
                                         <a href="{{ url('users/' .$user->id .'/likes_index') }}" class="font-weight-bold">いいね</a>
                                         <p class="like-count d-flex justify-content-center">{{ $like_count }}</p>
                                     </div>
@@ -83,7 +83,7 @@
                             @foreach ($timelines as $timeline)
                                 <div class="study-card p-0 col-lg-6 col-md-12">
                                     <div class ="card m-3">
-                                            <div class ="card-body d-flex ">
+                                            <div class ="card-header d-flex ">
                                                 <img src="{{ asset('storage/icon_image/' .$user->icon_image) }}" class="rounded-circle" width="30" height="30">
                                                 <a href ="{{ url('users/' .$timeline->id) }}" class="text-secondary">{{ $timeline->name }}</a>
                                                 <div class="ml-2 d-flex flex-column flex-grow-1">

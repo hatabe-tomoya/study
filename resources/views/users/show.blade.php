@@ -35,13 +35,13 @@
                                     @endif
 
                                     @if ($is_followed)
-                                        <span class="mt-2 px-1 bg-secondary text-light">フォローされています</span>
+                                        <div class="mt-2 px-1 bg-info text-light">フォローされています</div>
                                     @endif
                                  @endif
                             </div>
                         </div>
                         <div class="profile-counts ">
-                            <div class="follow-link">
+                            <div class="follow-link mt-4">
                                 <div class="users-follow-link d-flex justify-content-around">
                                      <div class="profile-follow-count ">
                                         {{--フォローへのリンク--}}
@@ -57,12 +57,12 @@
                             </div>
                             <div class="study-like-link">
                                 <div class="users-study-like-link d-flex justify-content-around">
-                                    <div class="profile-study-count ">
+                                    <div class="profile-study-count mr-2">
                                         
                                         <a href="#" class="font-weight-bold">作成済勉強法</a>
                                         <p class="study-count d-flex justify-content-center">{{ $post_count }}</p>
                                     </div>
-                                    <div class="profile-like-count ">
+                                    <div class="profile-like-count pr-3">
                                         <a href="{{ url('users/' .$user->id .'/likes_index') }}" class="font-weight-bold">いいね</a>
                                         <p class="like-count d-flex justify-content-center">{{ $like_count }}</p>
                                     </div>
@@ -92,18 +92,18 @@
                                             </div>
                                         
                                         <div class="card-body">
-                                            {{ $timeline->body }}
+                                            {!! nl2br(e(str_limit($timeline->body, 50))) !!}
                                         </div>
                                         <div class="card-footer py-1  bg-white">
                                             <div class ="user">
-                                                    <p class ="float-left">
+                                                    <p class ="float-left mb-1">
                                                         <a href ="#">
                                                             <img src ="#">
                                                         </a>
                                                         <a href ="{{ url('users/' .$timeline->user->id) }}" class="text-secondary">{{ $timeline->user->name }}</a>
                                                     </p>
                                                 </div>
-                                                <div class="float-right">
+                                                <div class="float-right ">
                                                     <div class ="like">
                                                         <div class="d-flex align-items-center">
                                                             <i class="fas fa-heart fa-fw text-danger"></i>
@@ -111,8 +111,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            <div class="d-flex align-items-center">
-                                            </div>
+                                            
                                         </div>
                                     </div>
                                 </div>

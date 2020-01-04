@@ -41,7 +41,7 @@
                             </div>
                         </div>
                         <div class="profile-counts ">
-                            <div class="follow-link">
+                            <div class="follow-link mt-4">
                                 <div class="users-follow-link d-flex justify-content-around">
                                      <div class="profile-follow-count ">
                                         
@@ -56,12 +56,12 @@
                             </div>
                             <div class="study-like-link">
                                 <div class="users-study-like-link d-flex justify-content-around">
-                                    <div class="profile-study-count ">
+                                    <div class="profile-study-count mr-2">
                                         
                                         <a href="{{ url('users/' .$user->id ) }}" class="font-weight-bold">作成済勉強法</a>
                                         <p class="study-count d-flex justify-content-center">{{ $post_count }}</p>
                                     </div>
-                                    <div class="profile-like-count ">
+                                    <div class="profile-like-count pr-3">
                                         <a href="#" class="font-weight-bold">いいね</a>
                                         <p class="like-count d-flex justify-content-center">{{ $like_count }}</p>
                                     </div>
@@ -91,11 +91,11 @@
                                             </div>
                                         
                                         <div class="card-body">
-                                            {{ $timeline->post->body }}
+                                            {!! nl2br(e(str_limit($timeline->post->body, 50))) !!}
                                         </div>
                                         <div class="card-footer py-1  bg-white">
                                             <div class ="user">
-                                                    <p class ="float-left">
+                                                    <p class ="float-left mb-1">
                                                         <a href ="#">
                                                             <img src ="#">
                                                         </a>

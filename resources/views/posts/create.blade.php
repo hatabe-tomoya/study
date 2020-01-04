@@ -15,7 +15,7 @@
                             <div class="col-md-12 p-3 w-100 d-flex">
                                 
                                 <div class="ml-2 d-flex flex-column">
-                                    <p>タイトル</p>
+                                    <p class="mb-0">タイトル</p>
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -33,7 +33,7 @@
                             <div class="col-md-12 p-3 w-100 d-flex">
                                 
                                 <div class="ml-2 d-flex flex-column">
-                                    <p>参考書・教材</p>
+                                    <p class="mb-0">参考書・教材</p>
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -51,7 +51,7 @@
                             <div class="col-md-12 p-3 w-100 d-flex">
                                 
                                 <div class="ml-2 d-flex flex-column">
-                                    <p>勉強法</p>
+                                    <p class="mb-0">勉強法</p>
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -69,7 +69,7 @@
                             <div class="col-md-12 p-3 w-100 d-flex">
                                 
                                 <div class="ml-2 d-flex flex-column">
-                                    <p>成果</p>
+                                    <p class="mb-0">成果</p>
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -85,7 +85,7 @@
                         
                        
                         
-                        <div class="form-group row mb-0">
+                        <div class="form-group row mt-4">
                             <div class="col-md-12 text-center">
                                 
                                 <button type="submit" class="btn btn-primary">

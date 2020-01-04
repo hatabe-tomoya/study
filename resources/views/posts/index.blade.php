@@ -28,7 +28,7 @@
                                     </p>
                                 </div>
                                 <div class ="like">
-                                    <div class="float-right">
+                                    <div class="d-flex flex-row-reverse">
                                         <div class="d-flex align-items-center">
                                             <i class="fas fa-heart fa-fw text-danger"></i>
                                                 <div class="mb-0 text-secondary">{{ count($post->like) }}</div>
