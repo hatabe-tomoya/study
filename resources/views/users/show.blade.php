@@ -97,9 +97,9 @@
                                                     <a href ="#">
                                                         <img src ="#">
                                                     </a>
-                                                    <div class="ml-2 d-flex flex-column">
+                                                    
                                                         <a href ="{{ url('users/' .$timeline->user->id) }}" class="text-secondary">{{ $timeline->user->name }}</a>
-                                                    </div>
+                                                    
                                                 </p>
                                             </div>
                                             <div class="float-right ">
