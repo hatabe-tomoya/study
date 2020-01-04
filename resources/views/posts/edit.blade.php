@@ -20,7 +20,7 @@
                                 </div>
                             </div>
                             <div class="col-md-12">
-                                <textarea class="form-control @error('title') is-invalid @enderror" name="title" required autocomplete="title" rows="4">{{ $posts->title }}</textarea>
+                                <textarea class="form-control @error('title') is-invalid @enderror" name="title" required autocomplete="title" rows="2">{{ old('title',$posts->title) }}</textarea>
 
                                 @error('title')
                                     <span class="invalid-feedback" role="alert">
@@ -38,7 +38,7 @@
                                 </div>
                             </div>
                             <div class="col-md-12">
-                                <textarea class="form-control @error('study_book') is-invalid @enderror" name="study_book" required autocomplete="study_book" rows="4">{{ $posts->study_book }}</textarea>
+                                <textarea class="form-control @error('study_book') is-invalid @enderror" name="study_book" required autocomplete="study_book" rows="2">{{ old('study_book',$posts->study_book) }}</textarea>
 
                                 @error('study_book')
                                     <span class="invalid-feedback" role="alert">
@@ -56,7 +56,7 @@
                                 </div>
                             </div>
                             <div class="col-md-12">
-                                <textarea class="form-control @error('body') is-invalid @enderror" name="body" required autocomplete="body" rows="4">{{ $posts->body }}</textarea>
+                                <textarea class="form-control @error('body') is-invalid @enderror" name="body" required autocomplete="body" rows="12">{{ old('body',$posts->body) }}</textarea>
 
                                 @error('body')
                                     <span class="invalid-feedback" role="alert">
@@ -74,7 +74,7 @@
                                 </div>
                             </div>
                             <div class="col-md-12">
-                                <textarea class="form-control @error('result') is-invalid @enderror" name="result" required autocomplete="result" rows="4">{{ $posts->result }}</textarea>
+                                <textarea class="form-control @error('result') is-invalid @enderror" name="result" required autocomplete="result" rows="4">{{ old('result',$posts->result) }}</textarea>
 
                                 @error('result')
                                     <span class="invalid-feedback" role="alert">
@@ -83,12 +83,9 @@
                                 @enderror
                             </div>
                         </div>
-                        
-                       
-                        
-                        <div class="form-group row mb-0">
-                            <div class="col-md-12 text-right">
-                                
+
+                        <div class="form-group row mt-4">
+                            <div class="d-flex justify-content-center col-md-12 text-right">
                                 <button type="submit" class="btn btn-primary">
                                     更新
                                 </button>

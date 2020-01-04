@@ -15,29 +15,29 @@
                         <p class="mb-0 text-secondary">{{ $post->created_at->format('Y-m-d H:i') }}</p>
                     </div>
                 </div>
-                <div class="ml-2 d-flex flex-column">
-                    <p>タイトル</p>
+                <div class="ml-2 d-flex flex-column mt-4">
+                    <h5 class ="border-bottom pb-1">タイトル</h5>
                 </div>
-                <div class="card-body">
+                <div class="card-body ">
                     {!! nl2br(e($post->title)) !!}
                 </div>
                 
-                <div class="ml-2 d-flex flex-column">
-                    <p>参考書・教材</p>
+                <div class="ml-2 d-flex flex-column mt-4">
+                    <h5 class ="border-bottom pb-1">参考書・教材</h5>
                 </div>
                 <div class="card-body">
                     {!! nl2br(e($post->study_book)) !!}
                 </div>
                 
-                <div class="ml-2 d-flex flex-column">
-                    <p>勉強法</p>
+                <div class="ml-2 d-flex flex-column mt-4">
+                    <h5 class ="border-bottom pb-1">勉強法</h5>
                 </div>
                 <div class="card-body">
                     {!! nl2br(e($post->body)) !!}
                 </div>
                 
-                <div class="ml-2 d-flex flex-column">
-                    <p>成果</p>
+                <div class="ml-2 d-flex flex-column mt-4">
+                    <h5 class ="border-bottom pb-1">成果</h5>
                 </div>
                 <div class="card-body">
                     {!! nl2br(e($post->result)) !!}
@@ -131,7 +131,7 @@
                                 </div>
                                 <div class="col-md-12">
                                     <input type="hidden" name="post_id" value="{{ $post->id }}">
-                                    <textarea class="form-control @error('text') is-invalid @enderror" name="text" required autocomplete="text" rows="4">{{ old('text') }}</textarea>
+                                    <textarea class="form-control @error('text') is-invalid @enderror" name="text" required autocomplete="text" rows="2">{{ old('text') }}</textarea>
 
                                     @error('text')
                                         <span class="invalid-feedback" role="alert">
@@ -141,8 +141,8 @@
                                 </div>
                             </div>
                             
-                            <div class="form-group row mb-0">
-                                <div class="col-md-12 text-right">
+                            <div class="form-group row mt-4">
+                                <div class="d-flex justify-content-center col-md-12 text-right">
                                     
                                     <button type="submit" class="btn btn-primary">
                                         投稿

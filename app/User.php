@@ -39,10 +39,10 @@ class User extends Authenticatable
     // 以下を追記
     public static $rules = array(
         'name' => 'required|string|max:255',
-        'icon_image' => 'file|image|mimes:jpeg,png,jpg|max:2048',
-        'email' => 'required|string|email|max:255',
+        'icon_image'       => 'file|image|mimes:jpeg,png,jpg|max:2048',
+        'email'            => 'required|string|email|max:255',
         'current-password' => 'required',
-        'new-password' => 'required|string|min:8|confirmed'
+        'new-password'     => 'required|string|min:8|confirmed'
     );
     
     

@@ -89,7 +89,7 @@
                                             <a href ="{{ url('posts/' .$timeline->id) }}" class="text-secondary">{{ $timeline->title }}</a>
                                         </div>
                                         <div class="card-body">
-                                            {!! nl2br(e(str_limit($timeline->body, 50))) !!}
+                                            {!! nl2br(e(str_limit($timeline->body, 35))) !!}
                                         </div>
                                         <div class="card-footer py-1  bg-white">
                                             <div class ="user">

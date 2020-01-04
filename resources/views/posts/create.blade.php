@@ -73,7 +73,7 @@
                                 </div>
                             </div>
                             <div class="col-md-12">
-                                <textarea class="form-control @error('result') is-invalid @enderror" name="result" requied autocomplete="result" rows="2">{{ old('title') }}</textarea>
+                                <textarea class="form-control @error('result') is-invalid @enderror" name="result" requied autocomplete="result" rows="4">{{ old('title') }}</textarea>
 
                                 @error('result')
                                     <span class="invalid-feedback" role="alert">

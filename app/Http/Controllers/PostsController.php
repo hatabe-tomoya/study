@@ -51,10 +51,10 @@ class PostsController extends Controller
         $user = auth()->user();
         $data = $request->all();
         $validator = Validator::make($data, [
-            'title'      => ['required', 'string'],
-            'study_book' => ['required', 'string'],
+            'title'      => ['required', 'string','max:90'],
+            'study_book' => ['required', 'string','max:90'],
             'body'       => ['required', 'string'],
-            'result'     => ['required', 'string']
+            'result'     => ['required', 'string','max:180']
         ]);
         $validator->validate();
         $post->postStore($user->id, $data);
@@ -114,10 +114,10 @@ class PostsController extends Controller
     {
          $data = $request->all();
          $validator = Validator::make($data, [
-            'title'      => ['required', 'string'],
-            'study_book' => ['required', 'string'],
+            'title'      => ['required', 'string','max:90'],
+            'study_book' => ['required', 'string','max:90'],
             'body'       => ['required', 'string'],
-            'result'     => ['required', 'string']
+            'result'     => ['required', 'string','max:180']
         ]);
         
         $validator->validate();
