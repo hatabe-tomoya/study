@@ -31,7 +31,7 @@
                                         <form action="{{ route('unfollow', ['id' => $user->id]) }}" method="POST">
                                             {{ csrf_field() }}
                                             {{ method_field('DELETE') }}
-
+                                            
                                             <button type="submit" class="btn btn-danger">フォロー解除</button>
                                         </form>
                                     @else
@@ -106,7 +106,7 @@
                                                         <img src ="#">
                                                     </a>
                                                     
-                                                        <a href ="{{ url('users/' .$timeline->user->id) }}" class="text-secondary">{{ $timeline->user->name }}</a>
+                                                     <a href ="{{ url('users/' .$timeline->user->id) }}" class="text-secondary">{{ $timeline->user->name }}</a>
                                                     
                                                 </p>
                                             </div>
@@ -136,3 +136,4 @@
 　　</div>
 </div>
 @endsection
+                                        

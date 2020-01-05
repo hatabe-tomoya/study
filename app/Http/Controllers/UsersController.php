@@ -177,11 +177,12 @@ class UsersController extends Controller
     }
     
    //フォロー一覧を表示させるための処理
-     public function followindex(User $user, Post $post, Relationship $relationship, Like $like)
+     public function followindex(Request $request, User $user, Post $post, Relationship $relationship, Like $like)
     {
-        $login_user = auth()->user();
-        $is_following = $login_user->isFollowing($user->id);
-        $is_followed = $login_user->isFollowed($user->id);
+        //$user = $request->id;
+        //$login_user = auth()->user();
+        $is_following = $user->isFollowing($user->id);
+        $is_followed = $user->isFollowed($user->id);
         //$timelines = $post->getUserTimeLine($user->id);
         $post_count = $post->getPostCount($user->id);
         $follow_count = $relationship->getFollowCount($user->id);
@@ -190,7 +191,7 @@ class UsersController extends Controller
         $like_count = $like->getLikeCount($user->id);
         
         //フォローユーザー取得
-        $user = auth()->user();
+        //$user = auth()->user();
         $follow_ids = $relationship->followingIds($user->id);
         // followed_idだけ抜き出す
         $following_ids = $follow_ids->pluck('followed_id')->toArray();
