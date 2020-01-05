@@ -45,6 +45,11 @@ class User extends Authenticatable
         'new-password'     => 'required|string|min:8|confirmed'
     );
     
+    public static $passwordchangerules = array(
+        'current-password' => 'required',
+        'new-password'     => 'required|string|min:8|confirmed'
+        );
+    
     
    public function followers() {
         return $this->belongsToMany(self::class, 'relationship', 'followed_id', 'following_id');

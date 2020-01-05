@@ -40,6 +40,10 @@ Route::group(['middleware' => 'auth'], function() {
     //いいね一覧を表示させるためのルート
     Route::get('users/{user}/likes_index', 'UsersController@likeindex');
     
+    //パスワード変更用のルート
+    Route::get('changepassword', 'UsersController@showPasswordForm');
+    Route::post('changepassword', 'UsersController@changePassword')->name('changepassword');
+    
     
     
     Route::post('users/{user}/follow', 'UsersController@follow')->name('follow');

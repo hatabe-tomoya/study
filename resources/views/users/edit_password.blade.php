@@ -10,7 +10,7 @@
                 <div class="card-header">パスワード編集</div>
                 
                 {{--エラーメッセージ用 --}}
-                        @if (session('change_password_error'))
+                 @if (session('change_password_error'))
                   <div class="container mt-2">
                     <div class="alert alert-danger">
                       {{session('change_password_error')}}
@@ -27,15 +27,11 @@
                 @endif
 
                 <div class="card-body">
-                    <form method="POST"action="{{ url('users/' .$user->id) }}"  enctype="multipart/form-data">
+                    <form method="post" action="{{ route('changepassword') }}"  enctype="multipart/form-data">
                         @csrf
-                        @method('PUT')
-
                         
                         
 
-                        
-                        
                         <div class="form-group row">
                             <label for="current" class="col-md-4 col-form-label text-md-right">{{ __('messages.Current Password') }}</label>
 

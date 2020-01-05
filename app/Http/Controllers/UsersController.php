@@ -101,7 +101,7 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request)
     {
         $this->validate($request, User::$rules);
         $user = User::find($request->id);
@@ -263,14 +263,11 @@ class UsersController extends Controller
         
         //フォローユーザー取得
         $user = auth()->user();
-        
-       
-        
+    
 
         $timelines = $like->getLikeTimeLines($user->id, $id);
 
-       
-        
+
         return view('users.likes_index', [
             'user' => $user,
             'is_following'   => $is_following,
@@ -284,11 +281,45 @@ class UsersController extends Controller
             ]);
     }
     
+    //パスワード変更用
+    public function showPasswordForm(User $user)
+    {
+        return view('users.edit_password',['user_id'=>Auth::id()]);
+    }
+    
+    public function changePassword(Request $request)
+    {
+        
+        $user = Auth::user();
+        $user_form = $request->all();
+        unset($user_form['_token']);
+        
+        //現在のパスワードが正しいかを調べる
+         if(!(Hash::check($request->get('current-password'), auth()->user()->password))) {
+            //return redirect()->back()->with('change_password_error', '現在のパスワードが間違っています。');
+            \Debugbar::info('現在のパスワードが正しいかを調べる');
+            \Debugbar::info($user);
+            return redirect('users/'.$user->id);
+        }
+        //現在のパスワードと新しいパスワードが違っているかを調べる
+        if(strcmp($request->get('current-password'), $request->get('new-password')) == 0) {
+            //return redirect()->back()->with('change_password_error', '新しいパスワードが現在のパスワードと同じです。違うパスワードを設定してください。');
+            \Debugbar::info('現在のパスワードと新しいパスワードが違っているかを調べる');
+            \Debugbar::info($user);
+            return redirect('users/'.$user->id);
+        }
+         //パスワードを変更
+        $user = auth()->user();
+        $user->password = bcrypt($request->get('new-password'));
+        $user->fill($user_form)->save();
+        \Debugbar::info($user);
+        return redirect('users/'.$user->id);
+          
+       
+
+    }
+    
     
    
-        
-    
-  
-  
     
 }
