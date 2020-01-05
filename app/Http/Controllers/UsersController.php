@@ -177,7 +177,7 @@ class UsersController extends Controller
     }
     
    //フォロー一覧を表示させるための処理
-     public function followindex(Request $request, User $user, Post $post, Relationship $relationship, Like $like)
+     public function followindex(User $user, Post $post, Relationship $relationship, Like $like)
     {
         //$user = $request->id;
         //$login_user = auth()->user();
@@ -216,9 +216,9 @@ class UsersController extends Controller
     //フォロワー一覧を表示させるための処理
      public function followerindex(User $user, Post $post, Relationship $relationship, Like $like)
     {
-        $login_user = auth()->user();
-        $is_following = $login_user->isFollowing($user->id);
-        $is_followed = $login_user->isFollowed($user->id);
+        //$login_user = auth()->user();
+        $is_following = $user->isFollowing($user->id);
+        $is_followed = $user->isFollowed($user->id);
         //$timelines = $post->getUserTimeLine($user->id);
         $post_count = $post->getPostCount($user->id);
         $follow_count = $relationship->getFollowCount($user->id);
@@ -227,7 +227,7 @@ class UsersController extends Controller
         $like_count = $like->getLikeCount($user->id);
         
         //フォロワーーユーザー取得
-        $user = auth()->user();
+        //$user = auth()->user();
         $follower_ids = $relationship->followedIds($user->id);
        
         $followed_ids = $follower_ids->pluck('following_id')->toArray();
@@ -252,9 +252,9 @@ class UsersController extends Controller
     //いいね一覧を表示
      public function likeindex(User $user, Post $post, Relationship $relationship, Like $like)
     {
-        $login_user = auth()->user();
-        $is_following = $login_user->isFollowing($user->id);
-        $is_followed = $login_user->isFollowed($user->id);
+        //$login_user = auth()->user();
+        $is_following = $user->isFollowing($user->id);
+        $is_followed = $user->isFollowed($user->id);
         //$timelines = $post->getUserTimeLine($user->id);
         $post_count = $post->getPostCount($user->id);
         $follow_count = $relationship->getFollowCount($user->id);
@@ -263,7 +263,7 @@ class UsersController extends Controller
         $like_count = $like->getLikeCount($user->id);
         
         //フォローユーザー取得
-        $user = auth()->user();
+        //$user = auth()->user();
     
 
         $timelines = $like->getLikeTimeLines($user->id, $id);
