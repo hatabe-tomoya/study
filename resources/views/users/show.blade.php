@@ -14,11 +14,19 @@
                         </div>
                     </div>
                     
-                        <div class="profile-edit d-flex justify-content-center">
+                        <div class="profile-edit">
                             <div>
                                 @if ($user->id === Auth::user()->id)
-                                    <a href="{{ url('users/' .$user->id .'/edit') }}" class="btn btn-primary">アカウントを編集する</a>
+                                    <div class="acount-edit d-flex justify-content-center">
+                                        <a href="{{ url('users/' .$user->id .'/edit') }}" class="btn btn-primary">アカウントを編集する</a>
+                                    </div>
+                                    <div class="password-edit d-flex justify-content-center mt-4">
+                                        <a href="{{ url('changepassword') }}" class="btn btn-secondary">パスワードを編集する</a>
+                                    </div>
                                 @else
+                                
+                                 
+                                
                                     @if ($is_following)
                                         <form action="{{ route('unfollow', ['id' => $user->id]) }}" method="POST">
                                             {{ csrf_field() }}

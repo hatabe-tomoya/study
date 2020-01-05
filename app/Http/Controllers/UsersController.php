@@ -289,24 +289,24 @@ class UsersController extends Controller
     
     public function changePassword(Request $request)
     {
-        
+        $this->validate($request, User::$passwordchangerules);
         $user = Auth::user();
         $user_form = $request->all();
         unset($user_form['_token']);
         
         //現在のパスワードが正しいかを調べる
          if(!(Hash::check($request->get('current-password'), auth()->user()->password))) {
-            //return redirect()->back()->with('change_password_error', '現在のパスワードが間違っています。');
+            return redirect()->back()->with('change_password_error', '現在のパスワードが間違っています。');
             \Debugbar::info('現在のパスワードが正しいかを調べる');
             \Debugbar::info($user);
-            return redirect('users/'.$user->id);
+            //return redirect('users/'.$user->id);
         }
         //現在のパスワードと新しいパスワードが違っているかを調べる
         if(strcmp($request->get('current-password'), $request->get('new-password')) == 0) {
-            //return redirect()->back()->with('change_password_error', '新しいパスワードが現在のパスワードと同じです。違うパスワードを設定してください。');
+            return redirect()->back()->with('change_password_error', '新しいパスワードが現在のパスワードと同じです。違うパスワードを設定してください。');
             \Debugbar::info('現在のパスワードと新しいパスワードが違っているかを調べる');
             \Debugbar::info($user);
-            return redirect('users/'.$user->id);
+            //return redirect('users/'.$user->id);
         }
          //パスワードを変更
         $user = auth()->user();
