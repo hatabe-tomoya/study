@@ -7,7 +7,11 @@
             <div class="card">
                 <div class="profile border-black">
                     <div class="p-3 d-flex flex-column ">
-                        <img src="{{ asset('storage/icon_image/' .$user->icon_image) }}" class="rounded-circle" width="100" height="100">
+                        @if($user->icon_image == null)
+                            <img src="{{ asset('storage/icon_image/itWz22pzRoBOwTB2Hz1qYGuKvbfvRXaCB94gzuf7.jpeg') }}" class="rounded-circle" width="100" height="100">
+                        @else
+                            <img src="{{ asset('storage/icon_image/' .$user->icon_image) }}" class="rounded-circle" width="100" height="100">
+                        @endif
                         <div class="mt-3 d-flex justify-content-center">
                             <h4 class="mb-0 font-weight-bold">{{ $user->name }}</h4>
                             <span class="text-secondary">{{ $user->screen_name }}</span>
@@ -96,11 +100,14 @@
                                         <div class="card-footer py-1  bg-white">
                                             <div class ="user">
                                                     <p class ="float-left mb-1">
-                                                        
+                                                        @if($timeline->post->user->icon_image == null)
+                                                            <img src="{{ asset('storage/icon_image/itWz22pzRoBOwTB2Hz1qYGuKvbfvRXaCB94gzuf7.jpeg') }}" class="rounded-circle" width="15" height="15">
+                                                        @else
                                                             <img src="{{ asset('storage/icon_image/' .$timeline->post->user->icon_image) }}" class="rounded-circle" width="15" height="15">
+                                                        @endif
                                                         
                                                         {{--リンク先設定完了--}}
-                                                        <a href ="{{ url('users/' .$timeline->post->id) }}" class="text-secondary">{{ $timeline->post->user->name }}</a>
+                                                        <a href ="{{ url('users/' .$timeline->post->user->id) }}" class="text-secondary">{{ $timeline->post->user->name }}</a>
                                                     </p>
                                                 </div>
                                                 <div class="float-right">

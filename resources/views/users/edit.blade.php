@@ -9,22 +9,22 @@
             <div class="card">
                 <div class="card-header">アカウント編集</div>
                 
-                {{--エラーメッセージ用 --}}
-                        @if (session('change_password_error'))
-                  <div class="container mt-2">
-                    <div class="alert alert-danger">
-                      {{session('change_password_error')}}
-                    </div>
-                  </div>
-                @endif
-        
-                @if (session('change_password_success'))
-                  <div class="container mt-2">
-                    <div class="alert alert-success">
-                      {{session('change_password_success')}}
-                    </div>
-                  </div>
-                @endif
+                    {{--エラーメッセージ用 --}}
+                    @if (session('change_password_error'))
+                        <div class="container mt-2">
+                            <div class="alert alert-danger">
+                                {{session('change_password_error')}}
+                            </div>
+                        </div>
+                    @endif
+            
+                    @if (session('change_password_success'))
+                        <div class="container mt-2">
+                            <div class="alert alert-success">
+                                {{session('change_password_success')}}
+                            </div>
+                        </div>
+                    @endif
 
                 <div class="card-body">
                     <form method="POST" action="{{ url('users/' .$user->id) }}" enctype="multipart/form-data">
@@ -35,7 +35,11 @@
                             <label for="icon_image" class="col-md-4 col-form-label text-md-right">{{ __('messages.Icon Image') }}</label>
 
                             <div class="col-md-6 d-flex align-items-center">
-                                <img src="{{ asset('storage/icon_image/' .$user->icon_image) }}" class="mr-2 rounded-circle" width="30" height="30" alt="icon_image">
+                                @if($user->icon_image == null)
+                                    <img src="{{ asset('storage/icon_image/itWz22pzRoBOwTB2Hz1qYGuKvbfvRXaCB94gzuf7.jpeg') }}" class="rounded-circle mr-2" width="30" height="30">
+                                @else
+                                    <img src="{{ asset('storage/icon_image/' .$user->icon_image) }}" class="mr-2 rounded-circle" width="30" height="30" alt="icon_image">   
+                                @endif
                                 <input type="file" name="icon_image" class="@error('icon_image') is-invalid @enderror" autocomplete="icon_image">
 
                                 @error('icon_image')

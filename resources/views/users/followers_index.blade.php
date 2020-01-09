@@ -6,11 +6,14 @@
         <div class="col-sm-4 ">
             <div class="card">
                 <div class="profile border-black">
-                    <div class="p-3 d-flex flex-column ">
-                        <img src="{{ asset('storage/icon_image/' .$user->icon_image) }}" class="rounded-circle" width="100" height="100">
+                    <div class="p-3 d-flex flex-column">
+                        @if($user->icon_image == null)
+                            <img src="{{ asset('storage/icon_image/itWz22pzRoBOwTB2Hz1qYGuKvbfvRXaCB94gzuf7.jpeg') }}" class="rounded-circle" width="100" height="100">
+                        @else
+                            <img src="{{ asset('storage/icon_image/' .$user->icon_image) }}" class="rounded-circle" width="100" height="100">
+                        @endif
                         <div class="mt-3 d-flex justify-content-center">
                             <h4 class="mb-0 font-weight-bold">{{ $user->name }}</h4>
-                            <span class="text-secondary">{{ $user->screen_name }}</span>
                         </div>
                     </div>
                     
@@ -83,8 +86,12 @@
                             @foreach ($timelines as $timeline)
                                 <div class="study-card p-0 col-lg-6 col-md-12">
                                     <div class ="card m-3">
-                                            <div class ="card-header d-flex ">
-                                                <img src="{{ asset('storage/icon_image/' .$timeline->icon_image) }}" class="rounded-circle" width="30" height="30">
+                                            <div class ="card-header d-flex">
+                                                @if($timeline->icon_image == null)
+                                                    <img src="{{ asset('storage/icon_image/itWz22pzRoBOwTB2Hz1qYGuKvbfvRXaCB94gzuf7.jpeg') }}" class="rounded-circle" width="30" height="30">
+                                                @else
+                                                    <img src="{{ asset('storage/icon_image/' .$timeline->icon_image) }}" class="rounded-circle" width="30" height="30">
+                                                @endif
                                                 <a href ="{{ url('users/' .$timeline->id) }}" class="text-secondary">{{ $timeline->name }}</a>
                                                 <div class="ml-2 d-flex flex-column flex-grow-1">
                                                 </div>
