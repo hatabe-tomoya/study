@@ -79,28 +79,6 @@ class User extends Authenticatable
         return (boolean) $this->followers()->where('following_id', $user_id)->first(['id']);
     }
     
-    /*public function updateAccount(Request $request) {
-        if(isset($data['icon_image'])) {
-            $file_name = $request->file('icon_image')->store('public/icon_image/');
-            
-            $this::where('id', $this->id)
-                ->update([
-                    'name'          => $params['name'],
-                    'icon_image' => basename($file_name),
-                    'email'         => $params['email'],
-                    'password' => $params['password']->bcrypt($request->get('new-password'))
-                 ]);
-        }else{
-            $this::where('id', $this->id)
-                ->update([
-                    'name'          => $params['name'],
-                    'email'         => $params['email'],
-                    'password' => Hash::make($params['password']),
-                ]);
-        }
-        return;
-    }
-    */
     
    //フォローユーザー取得
    public function getFollowTimeLines(Int $user_id, Array $follow_ids)

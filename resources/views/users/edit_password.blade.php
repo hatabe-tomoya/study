@@ -29,34 +29,23 @@
                 <div class="card-body">
                     <form method="post" action="{{ route('changepassword') }}"  enctype="multipart/form-data">
                         @csrf
-                        
-                        
-
+                    
                         <div class="form-group row">
                             <label for="current" class="col-md-4 col-form-label text-md-right">{{ __('messages.Current Password') }}</label>
-
                             <div class="col-md-6">
                                 <input id="current" type="password" class="form-control @error('password') is-invalid @enderror" name="current-password" required>
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
                             </div>
                         </div>
-                        
-                         <div class="form-group row mt-4">
+                        <div class="form-group row mt-4">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('messages.New Password') }}</label>
                             
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="new-password" required >
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <input id="password" type="password" class="form-control" name="new-password" required>
+                                @if ($errors->has('new-password'))
+                                      <span class="text-danger">
+                                        <strong>{{ $errors->first('new-password') }}</strong>
+                                      </span>
+                                    @endif
                                 <h6>※８文字以上</h6>
                             </div>
                         </div>
@@ -75,8 +64,6 @@
                             </div>
                         </div>
                     </form>
-                        
-                    
                 </div>
             </div>
         </div>

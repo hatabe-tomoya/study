@@ -53,7 +53,7 @@ class PostsController extends Controller
         $validator = Validator::make($data, [
             'title'      => ['required', 'string','max:90'],
             'study_book' => ['required', 'string','max:90'],
-            'body'       => ['required', 'string'],
+            'body'       => ['required', 'string','max:2000'],
             'result'     => ['required', 'string','max:180']
         ]);
         $validator->validate();
@@ -116,7 +116,7 @@ class PostsController extends Controller
          $validator = Validator::make($data, [
             'title'      => ['required', 'string','max:90'],
             'study_book' => ['required', 'string','max:90'],
-            'body'       => ['required', 'string'],
+            'body'       => ['required', 'string','max:2000'],
             'result'     => ['required', 'string','max:180']
         ]);
         

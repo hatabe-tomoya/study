@@ -20,12 +20,9 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(User $user) 
+    public function index() 
     {
-        $all_users = $user->getAllUsers(auth()->user()->id);
-        
-        return view('users.index', [
-            'all_users' => $all_users]);
+       //
     }
     
 
@@ -58,9 +55,9 @@ class UsersController extends Controller
      */
     public function show(User $user, Post $post, Relationship $relationship, Like $like)
     {
-        //$login_user = auth()->user();
-        $is_following = $user->isFollowing($user->id);
-        $is_followed = $user->isFollowed($user->id);
+        $login_user = auth()->user();
+        $is_following = $login_user->isFollowing($user->id);
+        $is_followed = $login_user->isFollowed($user->id);
         $timelines = $post->getUserTimeLine($user->id);
         $post_count = $post->getPostCount($user->id);
         $follow_count = $relationship->getFollowCount($user->id);
@@ -117,11 +114,6 @@ class UsersController extends Controller
         unset($user_form['remove']);
       }
       unset($user_form['_token']);
-      
-      
-        //$user->updateAccount($data);
-        
-          
         
         //現在のパスワードが正しいかを調べる
          if(!(Hash::check($request->get('current-password'), auth()->user()->password))) {
@@ -129,9 +121,7 @@ class UsersController extends Controller
         }
        
          //パスワードを変更
-        
         $user->fill($user_form)->save();
-
         return redirect('users/'.$user->id);
 
     }
@@ -178,9 +168,9 @@ class UsersController extends Controller
      public function followindex(User $user, Post $post, Relationship $relationship, Like $like)
     {
         //$user = $request->id;
-        //$login_user = auth()->user();
-        $is_following = $user->isFollowing($user->id);
-        $is_followed = $user->isFollowed($user->id);
+        $login_user = auth()->user();
+        $is_following = $login_user->isFollowing($user->id);
+        $is_followed = $login_user->isFollowed($user->id);
         //$timelines = $post->getUserTimeLine($user->id);
         $post_count = $post->getPostCount($user->id);
         $follow_count = $relationship->getFollowCount($user->id);
@@ -214,9 +204,9 @@ class UsersController extends Controller
     //フォロワー一覧を表示させるための処理
      public function followerindex(User $user, Post $post, Relationship $relationship, Like $like)
     {
-        //$login_user = auth()->user();
-        $is_following = $user->isFollowing($user->id);
-        $is_followed = $user->isFollowed($user->id);
+        $login_user = auth()->user();
+        $is_following = $login_user->isFollowing($user->id);
+        $is_followed = $login_user->isFollowed($user->id);
         //$timelines = $post->getUserTimeLine($user->id);
         $post_count = $post->getPostCount($user->id);
         $follow_count = $relationship->getFollowCount($user->id);
@@ -250,9 +240,9 @@ class UsersController extends Controller
     //いいね一覧を表示
      public function likeindex(User $user, Post $post, Relationship $relationship, Like $like)
     {
-        //$login_user = auth()->user();
-        $is_following = $user->isFollowing($user->id);
-        $is_followed = $user->isFollowed($user->id);
+        $login_user = auth()->user();
+        $is_following = $login_user->isFollowing($user->id);
+        $is_followed = $login_user->isFollowed($user->id);
         //$timelines = $post->getUserTimeLine($user->id);
         $post_count = $post->getPostCount($user->id);
         $follow_count = $relationship->getFollowCount($user->id);

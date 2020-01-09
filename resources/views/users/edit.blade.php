@@ -99,9 +99,6 @@
                                 @enderror
                             </div>
                         </div>
-
-                        
-
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <input type="submit" value="更新" class="btn btn-primary btn-sm" >
@@ -113,7 +110,7 @@
                                 @csrf
                                 @method('DELETE')
                                 
-                                <div class="col-md-6 offset-md-4">
+                                <div class="col-md-6 offset-md-4 mt-3 pl-2">
                                     <h4>アカウント削除</h4>
                                     <input type="submit" value="削除" class="btn btn-danger btn-sm" onclick='return confirm("本当に削除しますか？");'>
                                </div>

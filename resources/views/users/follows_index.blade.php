@@ -6,39 +6,44 @@
         <div class="col-sm-4 ">
             <div class="card">
                 <div class="profile border-black">
-                    <div class="p-3 d-flex flex-column">
+                    <div class="p-3 d-flex justify-content-center">
                         @if($user->icon_image == null)
                             <img src="{{ asset('storage/icon_image/itWz22pzRoBOwTB2Hz1qYGuKvbfvRXaCB94gzuf7.jpeg') }}" class="rounded-circle" width="100" height="100">
                         @else    
                             <img src="{{ asset('storage/icon_image/' .$user->icon_image) }}" class="rounded-circle" width="100" height="100">
                         @endif
+                    </div>
                         <div class="mt-3 d-flex justify-content-center">
                             <h4 class="mb-0 font-weight-bold">{{ $user->name }}</h4>
                         </div>
-                    </div>
-                    
-                        <div class="profile-edit d-flex justify-content-center">
+                        <div class="profile-edit d-flex justify-content-center pt-2">
                             <div>
                                 @if ($user->id === Auth::user()->id)
-                                    <a href="{{ url('users/' .$user->id .'/edit') }}" class="btn btn-primary">アカウントを編集する</a>
+                                    <div class="acount-edit d-flex justify-content-center pt-2">
+                                        <a href="{{ url('users/' .$user->id .'/edit') }}" class="btn btn-primary">アカウントを編集する</a>
+                                    </div>
+                                    <div class="password-edit d-flex justify-content-center mt-4">
+                                        <a href="{{ url('changepassword') }}" class="btn btn-secondary">パスワードを編集する</a>
+                                    </div>
                                 @else
+                                
                                     @if ($is_following)
                                         <form action="{{ route('unfollow', ['id' => $user->id]) }}" method="POST">
                                             {{ csrf_field() }}
                                             {{ method_field('DELETE') }}
 
-                                            <button type="submit" class="btn btn-danger">フォロー解除</button>
+                                            <button type="submit" class="btn btn-danger pt-2 mb-2">フォロー解除</button>
                                         </form>
                                     @else
                                         <form action="{{ route('follow', ['id' => $user->id]) }}" method="POST">
                                             {{ csrf_field() }}
 
-                                            <button type="submit" class="btn btn-primary">フォローする</button>
+                                            <button type="submit" class="btn btn-primary pt-2 mb-2">フォローする</button>
                                         </form>
                                     @endif
                                     
                                      @if ($is_followed)
-                                        <span class="mt-2 px-1 bg-secondary text-light">フォローされています</span>
+                                        <div class="mt-2 px-1 bg-info text-light">フォローされています</div>
                                     @endif
                                  @endif
                             </div>

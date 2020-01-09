@@ -12,7 +12,7 @@
                 <div class ="study-card p-0 col-lg-4 col-md-6 col-sm-12">
                     <div class ="card m-3">
                         <div class ="card-header">
-                          <a href ="{{ url('posts/' .$post->id) }}" class="text-secondary">{{ $post->title }}</a>
+                          <a href ="{{ url('posts/' .$post->id) }}" class="text-secondary">{!! nl2br(e(str_limit($post->title, 40))) !!}</a>
                         </div>
                         <div class ="card-body">
                           {!! nl2br(e(str_limit($post->body, 40))) !!}

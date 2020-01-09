@@ -6,7 +6,11 @@
         <div class="col-md-8 mb-3">
             <div class="card">
                 <div class="card-header p-3 w-100 d-flex">
-                    <img src="{{ asset('storage/icon_image/' .$post->user->icon_image) }}" class="rounded-circle" width="50" height="50">
+                    @if($post->user->icon_image == null)
+                        <img src="{{ asset('storage/icon_image/itWz22pzRoBOwTB2Hz1qYGuKvbfvRXaCB94gzuf7.jpeg') }}" class="rounded-circle" width="50" height="50">
+                    @else
+                        <img src="{{ asset('storage/icon_image/' .$post->user->icon_image) }}" class="rounded-circle" width="50" height="50">
+                    @endif
                     <div class="ml-2 d-flex flex-column">
                         <p class="mb-0">{{ $post->user->name }}</p>
                     </div>
@@ -97,7 +101,11 @@
                 @forelse ($comments as $comment)
                     <li class="list-group-item">
                         <div class="py-3 w-100 d-flex">
-                            <img src="{{ asset('storage/icon_image/' .$comment->user->icon_image) }}" class="rounded-circle" width="50" height="50">
+                            @if($comment->user->icon_image == null)
+                                <img src="{{ asset('storage/icon_image/itWz22pzRoBOwTB2Hz1qYGuKvbfvRXaCB94gzuf7.jpeg') }}" class="rounded-circle" width="50" height="50">
+                            @else
+                                <img src="{{ asset('storage/icon_image/' .$comment->user->icon_image) }}" class="rounded-circle" width="50" height="50">
+                            @endif
                             <div class="ml-2 d-flex flex-column">
                                 <p class="mb-0">{{ $comment->user->name }}</p>
                                 <a href="{{ url('users/' .$comment->user->id) }}" class="text-secondary">{{ $comment->user->screen_name }}</a>
@@ -129,7 +137,6 @@
                                     @endif
                                     <div class="ml-2 d-flex flex-column">
                                         <p class="mb-0">{{ $user->name }}</p>
-                                        <a href="{{ url('users/' .$user->id) }}" class="text-secondary">{{ $user->screen_name }}</a>
                                     </div>
                                 </div>
                                 <div class="col-md-12">

@@ -6,22 +6,20 @@
         <div class="col-sm-4 ">
             <div class="card">
                 <div class="profile border-black">
-                    <div class="p-3 d-flex flex-column ">
+                    <div class="p-3 d-flex justify-content-center">
                         @if($user->icon_image == null)
-                           <img src="{{ asset('storage/icon_image/itWz22pzRoBOwTB2Hz1qYGuKvbfvRXaCB94gzuf7.jpeg') }}" class="rounded-circle" width="100" height="100">
+                            <img src="{{ asset('storage/icon_image/itWz22pzRoBOwTB2Hz1qYGuKvbfvRXaCB94gzuf7.jpeg') }}" class="rounded-circle" width="100" height="100">
                         @else
-                           <img src="{{ asset('storage/icon_image/' .$user->icon_image) }}" class="rounded-circle" width="100" height="100">
+                            <img src="{{ asset('storage/icon_image/' .$user->icon_image) }}" class="rounded-circle" width="100" height="100">
                         @endif
+                    </div>
                         <div class="mt-3 d-flex justify-content-center">
                             <h4 class="mb-0 font-weight-bold">{{ $user->name }}</h4>
-                           
                         </div>
-                    </div>
-                    
-                        <div class="profile-edit d-flex justify-content-center">
+                        <div class="profile-edit d-flex justify-content-center pt-2">
                             <div>
                                 @if ($user->id === Auth::user()->id)
-                                    <div class="acount-edit d-flex justify-content-center">
+                                    <div class="acount-edit d-flex justify-content-center pt-2">
                                         <a href="{{ url('users/' .$user->id .'/edit') }}" class="btn btn-primary">アカウントを編集する</a>
                                     </div>
                                     <div class="password-edit d-flex justify-content-center mt-4">
@@ -33,13 +31,13 @@
                                             {{ csrf_field() }}
                                             {{ method_field('DELETE') }}
                                             
-                                            <button type="submit" class="btn btn-danger">フォロー解除</button>
+                                            <button type="submit" class="btn btn-danger pt-2 mb-2">フォロー解除</button>
                                         </form>
                                     @else
                                         <form action="{{ route('follow', ['id' => $user->id]) }}" method="POST">
                                             {{ csrf_field() }}
 
-                                            <button type="submit" class="btn btn-primary">フォローする</button>
+                                            <button type="submit" class="btn btn-primary pt-2 mb-2">フォローする</button>
                                         </form>
                                     @endif
 
@@ -95,10 +93,10 @@
                                 <div class="study-card p-0 col-lg-6 col-md-12">
                                     <div class ="card m-3">
                                         <div class ="card-header">
-                                            <a href ="{{ url('posts/' .$timeline->id) }}" class="text-secondary">{{ $timeline->title }}</a>
+                                            <a href ="{{ url('posts/' .$timeline->id) }}" class="text-secondary">{!! nl2br(e(str_limit($timeline->body, 40))) !!}</a>
                                         </div>
                                         <div class="card-body">
-                                            {!! nl2br(e(str_limit($timeline->body, 35))) !!}
+                                            {!! nl2br(e(str_limit($timeline->body, 40))) !!}
                                         </div>
                                         <div class="card-footer py-1  bg-white">
                                             <div class ="user">
