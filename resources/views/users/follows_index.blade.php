@@ -84,7 +84,7 @@
                                 <div class="study-card p-0 col-lg-6 col-md-12">
                                     <div class ="card m-3">
                                         <div class ="card-header d-flex ">
-                                            <img src="{{ asset('storage/icon_image/' .$user->icon_image) }}" class="rounded-circle" width="30" height="30">
+                                            <img src="{{ asset('storage/icon_image/' .$timeline->icon_image) }}" class="rounded-circle" width="30" height="30">
                                             <a href ="{{ url('users/' .$timeline->id) }}" class="text-secondary">{{ $timeline->name }}</a>
                                             <div class="ml-2 d-flex flex-column flex-grow-1">
                                             </div>

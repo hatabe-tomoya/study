@@ -10,11 +10,11 @@
                         <img src="{{ asset('storage/icon_image/' .$user->icon_image) }}" class="rounded-circle" width="100" height="100">
                         <div class="mt-3 d-flex justify-content-center">
                             <h4 class="mb-0 font-weight-bold">{{ $user->name }}</h4>
-                            <span class="text-secondary">{{ $user->screen_name }}</span>
+                           
                         </div>
                     </div>
                     
-                        <div class="profile-edit">
+                        <div class="profile-edit d-flex justify-content-center">
                             <div>
                                 @if ($user->id === Auth::user()->id)
                                     <div class="acount-edit d-flex justify-content-center">
@@ -24,9 +24,6 @@
                                         <a href="{{ url('changepassword') }}" class="btn btn-secondary">パスワードを編集する</a>
                                     </div>
                                 @else
-                                
-                                 
-                                
                                     @if ($is_following)
                                         <form action="{{ route('unfollow', ['id' => $user->id]) }}" method="POST">
                                             {{ csrf_field() }}
@@ -102,9 +99,9 @@
                                         <div class="card-footer py-1  bg-white">
                                             <div class ="user">
                                                 <p class ="float-left mb-1">
-                                                    <a href ="#">
-                                                        <img src ="#">
-                                                    </a>
+                                                    
+                                                        <img src="{{ asset('storage/icon_image/' .$user->icon_image) }}" class="rounded-circle" width="15" height="15">
+                                                    
                                                     
                                                      <a href ="{{ url('users/' .$timeline->user->id) }}" class="text-secondary">{{ $timeline->user->name }}</a>
                                                     

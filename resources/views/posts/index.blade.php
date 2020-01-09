@@ -20,9 +20,11 @@
                         <div class="card-footer py-1  bg-white">
                             <div class ="user">
                                 <p class ="float-left mb-1">
-                                    <a href ="#">
-                                        <img src ="#">
-                                    </a>
+                                    @if($post->user->icon_image == null)
+                                        <img src="{{ asset('storage/icon_image/itWz22pzRoBOwTB2Hz1qYGuKvbfvRXaCB94gzuf7.jpeg') }}" class="rounded-circle" width="15" height="15" >
+                                    @else
+                                        <img src="{{ asset('storage/icon_image/' .$post->user->icon_image) }}" class="rounded-circle" width="15" height="15">
+                                    @endif
                                     <a href ="{{ url('users/' .$post->user->id) }}" class="text-secondary">{{ $post->user->name }}</a>
                                 </p>
                             </div>

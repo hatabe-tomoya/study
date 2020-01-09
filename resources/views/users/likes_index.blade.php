@@ -96,9 +96,9 @@
                                         <div class="card-footer py-1  bg-white">
                                             <div class ="user">
                                                     <p class ="float-left mb-1">
-                                                        <a href ="#">
-                                                            <img src ="#">
-                                                        </a>
+                                                        
+                                                            <img src="{{ asset('storage/icon_image/' .$timeline->post->user->icon_image) }}" class="rounded-circle" width="15" height="15">
+                                                        
                                                         {{--リンク先設定完了--}}
                                                         <a href ="{{ url('users/' .$timeline->post->id) }}" class="text-secondary">{{ $timeline->post->user->name }}</a>
                                                     </p>

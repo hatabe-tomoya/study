@@ -58,9 +58,9 @@ class UsersController extends Controller
      */
     public function show(User $user, Post $post, Relationship $relationship, Like $like)
     {
-        $login_user = auth()->user();
-        $is_following = $login_user->isFollowing($user->id);
-        $is_followed = $login_user->isFollowed($user->id);
+        //$login_user = auth()->user();
+        $is_following = $user->isFollowing($user->id);
+        $is_followed = $user->isFollowed($user->id);
         $timelines = $post->getUserTimeLine($user->id);
         $post_count = $post->getPostCount($user->id);
         $follow_count = $relationship->getFollowCount($user->id);
@@ -101,21 +101,23 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, User $user)
     {
         $this->validate($request, User::$rules);
-        $user = User::find($request->id);
+        //$user = User::find($request->id);
+        //$user = auth()->user();
         $user_form = $request->all();
         
         if (isset($user_form['icon_image'])) {
         $path = $request->file('icon_image')->store('public/icon_image');
         $user->icon_image = basename($path);
-        unset($news_form['icon_image']);
+        unset($user_form['icon_image']);
       } elseif (isset($request->remove)) {
         $user->icon_image = null;
         unset($user_form['remove']);
       }
       unset($user_form['_token']);
+      
       
         //$user->updateAccount($data);
         
@@ -125,13 +127,9 @@ class UsersController extends Controller
          if(!(Hash::check($request->get('current-password'), auth()->user()->password))) {
             return redirect()->back()->with('change_password_error', '現在のパスワードが間違っています。');
         }
-        //現在のパスワードと新しいパスワードが違っているかを調べる
-        if(strcmp($request->get('current-password'), $request->get('new-password')) == 0) {
-            return redirect()->back()->with('change_password_error', '新しいパスワードが現在のパスワードと同じです。違うパスワードを設定してください。');
-        }
+       
          //パスワードを変更
-        $user = auth()->user();
-        $user->password = bcrypt($request->get('new-password'));
+        
         $user->fill($user_form)->save();
 
         return redirect('users/'.$user->id);
@@ -314,7 +312,8 @@ class UsersController extends Controller
         $user->password = bcrypt($request->get('new-password'));
         $user->fill($user_form)->save();
         \Debugbar::info($user);
-        return redirect('users/'.$user->id);
+        return redirect('users/'.$user->id)->with('change_password_success', 'パスワードを変更しました。');
+    
           
        
 

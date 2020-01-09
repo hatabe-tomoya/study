@@ -35,7 +35,7 @@
                             <label for="icon_image" class="col-md-4 col-form-label text-md-right">{{ __('messages.Icon Image') }}</label>
 
                             <div class="col-md-6 d-flex align-items-center">
-                                <img src="{{ asset('storage/icon_image/' .$user->icon_image) }}" class="mr-2 rounded-circle" width="80" height="80" alt="icon_image">
+                                <img src="{{ asset('storage/icon_image/' .$user->icon_image) }}" class="mr-2 rounded-circle" width="30" height="30" alt="icon_image">
                                 <input type="file" name="icon_image" class="@error('icon_image') is-invalid @enderror" autocomplete="icon_image">
 
                                 @error('icon_image')
