@@ -19,13 +19,6 @@ Route::get('/', function () {
     return view('top');
 });
 
-Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
-    Route::get('post/create', 'Admin\PostController@add');
-    Route::get('user/create', 'Admin\UserController@add');
-    Route::get('user/edit', 'Admin\UserController@edit');
-    Route::post('post/create', 'Admin\PostController@create');
-});
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -43,10 +36,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('users/{user}/follow', 'UsersController@follow')->name('follow');
     Route::delete('users/{user}/unfollow', 'UsersController@unfollow')->name('unfollow');
     
-    //テスト検索一覧
-    //Route::get('posts/searchindex', 'PostsController@searchIndex')->name('searchindex');
     Route::resource('posts', 'PostsController', ['only' => ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']]);
-    
     
     Route::resource('comments', 'CommentsController', ['only' => ['store']]);
     
