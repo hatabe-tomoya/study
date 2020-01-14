@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
-
-
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -25,6 +23,14 @@
                     </div>
                   </div>
                 @endif
+                
+                @if ($errors->has('new-password'))
+                    <div class="container mt-2">
+                        <div class="alert alert-danger">
+                            {{ $errors->first('new-password') }}
+                        </div>
+                    </div>
+                @endif
 
                 <div class="card-body">
                     <form method="post" action="{{ route('changepassword') }}"  enctype="multipart/form-data">
@@ -41,11 +47,6 @@
                             
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control" name="new-password" required>
-                                @if ($errors->has('new-password'))
-                                      <span class="text-danger">
-                                        <strong>{{ $errors->first('new-password') }}</strong>
-                                      </span>
-                                    @endif
                                 <h6>※８文字以上</h6>
                             </div>
                         </div>

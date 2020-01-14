@@ -16,6 +16,5 @@
     </head>
     <body>
         @extends('layouts.app')
-        
     </body>
 </html>

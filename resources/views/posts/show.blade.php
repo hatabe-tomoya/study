@@ -18,34 +18,34 @@
                         <p class="mb-0 text-secondary">{{ $post->created_at->format('Y-m-d H:i') }}</p>
                     </div>
                 </div>
-                <div class="ml-2 d-flex flex-column mt-4">
+                
+                <div class="ml-4 d-flex flex-column mt-4">
                     <h5 class ="border-bottom pb-1">タイトル</h5>
                 </div>
-                <div class="card-body ">
+                <div class="card-body ml-3">
                     {!! nl2br(e($post->title)) !!}
                 </div>
                 
-                <div class="ml-2 d-flex flex-column mt-4">
+                <div class="ml-4 d-flex flex-column mt-4">
                     <h5 class ="border-bottom pb-1">参考書・教材</h5>
                 </div>
-                <div class="card-body">
+                <div class="card-body ml-3">
                     {!! nl2br(e($post->study_book)) !!}
                 </div>
                 
-                <div class="ml-2 d-flex flex-column mt-4">
+                <div class="ml-4 d-flex flex-column mt-4">
                     <h5 class ="border-bottom pb-1">勉強法</h5>
                 </div>
-                <div class="card-body">
+                <div class="card-body ml-3">
                     {!! nl2br(e($post->body)) !!}
                 </div>
                 
-                <div class="ml-2 d-flex flex-column mt-4">
+                <div class="ml-4 d-flex flex-column mt-4">
                     <h5 class ="border-bottom pb-1">成果</h5>
                 </div>
-                <div class="card-body">
+                <div class="card-body ml-3">
                     {!! nl2br(e($post->result)) !!}
                 </div>
-                
                 
                 <div class="card-footer py-1 d-flex justify-content-end bg-white">
                     @if ($post->user->id === Auth::user()->id)
@@ -69,7 +69,6 @@
                         <p class="mb-0 text-secondary">{{ count($post->comment) }}</p>
                     </div>
 
-                    <!-- ここから -->
                     <div class="d-flex align-items-center">
                         @if (!in_array($user->id, array_column($post->like->toArray(), 'user_id'), TRUE))
                             <form method="POST" action="{{ url('likes/') }}" class="mb-0">
@@ -88,8 +87,6 @@
                         @endif
                         <p class="mb-0 text-secondary">{{ count($post->like) }}</p>
                     </div>
-                    <!-- ここまで -->
-
                 </div>
             </div>
         </div>
@@ -153,7 +150,6 @@
                             
                             <div class="form-group row mt-4">
                                 <div class="d-flex justify-content-center col-md-12 text-right">
-                                    
                                     <button type="submit" class="btn btn-primary">
                                         投稿
                                     </button>

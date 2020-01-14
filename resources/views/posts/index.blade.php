@@ -1,5 +1,4 @@
 @extends('layouts.app')
-@section('title', '勉強法一覧')
 
 @section('content')
     <div class="container">
@@ -17,18 +16,18 @@
                         <div class ="card-body">
                           {!! nl2br(e(str_limit($post->body, 40))) !!}
                         </div>
-                        <div class="card-footer py-1  bg-white">
+                        <div class="card-footer py-1 bg-white">
                             <div class ="user">
                                 <p class ="float-left mb-1">
                                     @if($post->user->icon_image == null)
-                                        <img src="{{ asset('storage/icon_image/itWz22pzRoBOwTB2Hz1qYGuKvbfvRXaCB94gzuf7.jpeg') }}" class="rounded-circle" width="15" height="15" >
+                                        <img src="{{ asset('storage/icon_image/itWz22pzRoBOwTB2Hz1qYGuKvbfvRXaCB94gzuf7.jpeg') }}" class="rounded-circle" width="15" height="15">
                                     @else
                                         <img src="{{ asset('storage/icon_image/' .$post->user->icon_image) }}" class="rounded-circle" width="15" height="15">
                                     @endif
                                     <a href ="{{ url('users/' .$post->user->id) }}" class="text-secondary">{{ $post->user->name }}</a>
                                 </p>
                             </div>
-                            <div class="float-right ">
+                            <div class="float-right">
                                 <div class ="like">
                                     <div class="d-flex flex-row-reverse">
                                         <div class="d-flex align-items-center">

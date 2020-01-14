@@ -5,21 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Study') }}</title>
 
-    <!-- Scripts -->
+    
     <script src="{{ asset('js/app.js') }}" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
         
 
-    <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 
-    <!-- Styles -->
+
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
@@ -34,12 +33,6 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         {{-- ログインしていなかったらログイン画面へのリンクを表示 --}}
                         @guest
@@ -61,7 +54,7 @@
                                             <a class="nav-link" href="{{url('posts/create')}}">勉強法作成</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="{{ url('users/' .Auth::user()->id) }}">{{ Auth::user()->name }} </a>
+                                            <a class="nav-link" href="{{ url('users/' .Auth::user()->id) }}">{!! nl2br(e(str_limit(Auth::user()->name, 40))) !!} </a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" onclick="event.preventDefault();
@@ -74,7 +67,7 @@
                                     </form>
                                 </div>
                             </nav>
-                            @endguest
+                        @endguest
                     </ul>
                 </div>
             </div>
@@ -83,8 +76,12 @@
             <div class="alert alert-success">
                 {{ session('change_password_success') }}
             </div>
-        @endif      
-
+        @endif
+        @if (session('update_account_success'))
+            <div class="alert alert-success">
+                {{ session('update_account_success') }}
+            </div>
+        @endif   
         <main class="py-4">
             @yield('content')
         </main>

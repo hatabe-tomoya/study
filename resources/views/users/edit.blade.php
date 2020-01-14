@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
-
-
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -33,7 +31,6 @@
 
                         <div class="form-group row align-items-center">
                             <label for="icon_image" class="col-md-4 col-form-label text-md-right">{{ __('messages.Icon Image') }}</label>
-
                             <div class="col-md-6 d-flex align-items-center">
                                 @if($user->icon_image == null)
                                     <img src="{{ asset('storage/icon_image/itWz22pzRoBOwTB2Hz1qYGuKvbfvRXaCB94gzuf7.jpeg') }}" class="rounded-circle mr-2" width="30" height="30">
@@ -55,8 +52,6 @@
                             </div>
                         </div>
                         
-                        
-
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('messages.Name') }}</label>
 
@@ -85,18 +80,17 @@
                             </div>
                         </div>
                         
-                        
                         <div class="form-group row">
                             <label for="current" class="col-md-4 col-form-label text-md-right">{{ __('messages.Current Password') }}</label>
 
                             <div class="col-md-6">
                                 <input id="current" type="password" class="form-control @error('password') is-invalid @enderror" name="current-password" required>
-
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+                                <h6>※アカウント編集の際には、現在のパスワードも入力してください。</h6>
                             </div>
                         </div>
                         <div class="form-group row mb-0">
@@ -105,18 +99,17 @@
                             </div>
                         </div>
                     </form>
-                        <div class="center-block">
-                            <form method="POST" action="{{ url('users/' .$user->id) }}" class="mb-0">
-                                @csrf
-                                @method('DELETE')
-                                
-                                <div class="col-md-6 offset-md-4 mt-3 pl-2">
-                                    <h4>アカウント削除</h4>
-                                    <input type="submit" value="削除" class="btn btn-danger btn-sm" onclick='return confirm("本当に削除しますか？");'>
-                               </div>
-                            </form>
-                        </div>
-                    
+                    <div class="center-block">
+                        <form method="POST" action="{{ url('users/' .$user->id) }}" class="mb-0">
+                            @csrf
+                            @method('DELETE')
+                            
+                            <div class="col-md-6 offset-md-4 mt-3 pl-2">
+                                <h4>アカウント削除</h4>
+                                <input type="submit" value="削除" class="btn btn-danger btn-sm" onclick='return confirm("本当に削除しますか？");'>
+                           </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

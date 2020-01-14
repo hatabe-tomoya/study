@@ -33,6 +33,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
     
+    public function posts() 
+    {
+        return $this->hasMany(Post::class);
+    }
+    
     //アカウント編集用バリデーション
     protected $guarded = array('id');
 
@@ -81,9 +86,9 @@ class User extends Authenticatable
     
     
    //フォローユーザー取得
-   public function getFollowTimeLines(Int $user_id, Array $follow_ids)
+   public function getFollowTimeLines(Int $user_id, Array $following_ids)
     {
-        return $this->whereIn('id', $follow_ids)->orderBy('created_at', 'DESC')->paginate(50);
+        return $this->whereIn('id', $following_ids)->orderBy('created_at', 'DESC')->paginate(50);
     }
     
     //フォロワーユーザー取得

@@ -33,18 +33,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => 'auth'], function() {
     Route::resource('users','UsersController', ['only' => ['show', 'edit', 'update', 'destroy']] );
     
-    //フォロー一覧を表示させるためのルート
     Route::get('users/{user}/follows_index', 'UsersController@followindex');
-    //フォロワ一覧を表示させるためのルート
     Route::get('users/{user}/followers_index', 'UsersController@followerindex');
-    //いいね一覧を表示させるためのルート
     Route::get('users/{user}/likes_index', 'UsersController@likeindex');
     
-    //パスワード変更用のルート
     Route::get('changepassword', 'UsersController@showPasswordForm');
     Route::post('changepassword', 'UsersController@changePassword')->name('changepassword');
-    
-    
     
     Route::post('users/{user}/follow', 'UsersController@follow')->name('follow');
     Route::delete('users/{user}/unfollow', 'UsersController@unfollow')->name('unfollow');

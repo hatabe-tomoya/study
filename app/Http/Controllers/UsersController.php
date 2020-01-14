@@ -62,7 +62,6 @@ class UsersController extends Controller
         $post_count = $post->getPostCount($user->id);
         $follow_count = $relationship->getFollowCount($user->id);
         $follower_count = $relationship->getFollowerCount($user->id);
-        //いいねカウント
         $like_count = $like->getLikeCount($user->id);
         
         return view('users.show', [
@@ -73,7 +72,6 @@ class UsersController extends Controller
             'post_count'    => $post_count,
             'follow_count'   => $follow_count,
             'follower_count' => $follower_count,
-            //いいねカウント
             'like_count'     => $like_count
             ]);
     }
@@ -101,8 +99,6 @@ class UsersController extends Controller
     public function update(Request $request, User $user)
     {
         $this->validate($request, User::$rules);
-        //$user = User::find($request->id);
-        //$user = auth()->user();
         $user_form = $request->all();
         
         if (isset($user_form['icon_image'])) {
@@ -113,16 +109,14 @@ class UsersController extends Controller
         $user->icon_image = null;
         unset($user_form['remove']);
       }
-      unset($user_form['_token']);
+        unset($user_form['_token']);
         
-        //現在のパスワードが正しいかを調べる
          if(!(Hash::check($request->get('current-password'), auth()->user()->password))) {
             return redirect()->back()->with('change_password_error', '現在のパスワードが間違っています。');
         }
-       
-         //パスワードを変更
+        
         $user->fill($user_form)->save();
-        return redirect('users/'.$user->id);
+        return redirect('users/'.$user->id)->with('update_account_success', 'アカウントを編集しました。');
 
     }
 
@@ -164,30 +158,22 @@ class UsersController extends Controller
         }
     }
     
-   //フォロー一覧を表示させるための処理
+   
      public function followindex(User $user, Post $post, Relationship $relationship, Like $like)
     {
-        //$user = $request->id;
         $login_user = auth()->user();
         $is_following = $login_user->isFollowing($user->id);
         $is_followed = $login_user->isFollowed($user->id);
-        //$timelines = $post->getUserTimeLine($user->id);
         $post_count = $post->getPostCount($user->id);
         $follow_count = $relationship->getFollowCount($user->id);
         $follower_count = $relationship->getFollowerCount($user->id);
-        //いいねカウント
         $like_count = $like->getLikeCount($user->id);
         
-        //フォローユーザー取得
-        //$user = auth()->user();
         $follow_ids = $relationship->followingIds($user->id);
-        // followed_idだけ抜き出す
         $following_ids = $follow_ids->pluck('followed_id')->toArray();
 
         $timelines = $user->getFollowTimelines($user->id, $following_ids);
 
-       
-        
         return view('users.follows_index', [
             'user' => $user,
             'is_following'   => $is_following,
@@ -196,34 +182,26 @@ class UsersController extends Controller
             'post_count'    => $post_count,
             'follow_count'   => $follow_count,
             'follower_count' => $follower_count,
-            //いいねカウント
             'like_count'     => $like_count,
             ]);
     }
     
-    //フォロワー一覧を表示させるための処理
+    
      public function followerindex(User $user, Post $post, Relationship $relationship, Like $like)
     {
         $login_user = auth()->user();
         $is_following = $login_user->isFollowing($user->id);
         $is_followed = $login_user->isFollowed($user->id);
-        //$timelines = $post->getUserTimeLine($user->id);
         $post_count = $post->getPostCount($user->id);
         $follow_count = $relationship->getFollowCount($user->id);
         $follower_count = $relationship->getFollowerCount($user->id);
-        //いいねカウント
         $like_count = $like->getLikeCount($user->id);
         
-        //フォロワーーユーザー取得
-        //$user = auth()->user();
         $follower_ids = $relationship->followedIds($user->id);
-       
         $followed_ids = $follower_ids->pluck('following_id')->toArray();
 
         $timelines = $user->getFollowerTimelines($user->id, $followed_ids);
 
-       
-        
         return view('users.followers_index', [
             'user' => $user,
             'is_following'   => $is_following,
@@ -232,31 +210,23 @@ class UsersController extends Controller
             'post_count'    => $post_count,
             'follow_count'   => $follow_count,
             'follower_count' => $follower_count,
-            //いいねカウント
             'like_count'     => $like_count,
             ]);
     }
     
-    //いいね一覧を表示
+    
      public function likeindex(User $user, Post $post, Relationship $relationship, Like $like)
     {
         $login_user = auth()->user();
         $is_following = $login_user->isFollowing($user->id);
         $is_followed = $login_user->isFollowed($user->id);
-        //$timelines = $post->getUserTimeLine($user->id);
         $post_count = $post->getPostCount($user->id);
         $follow_count = $relationship->getFollowCount($user->id);
         $follower_count = $relationship->getFollowerCount($user->id);
-        //いいねカウント
         $like_count = $like->getLikeCount($user->id);
-        
-        //フォローユーザー取得
-        //$user = auth()->user();
-    
 
         $timelines = $like->getLikeTimeLines($user->id, $id);
-
-
+        
         return view('users.likes_index', [
             'user' => $user,
             'is_following'   => $is_following,
@@ -265,12 +235,11 @@ class UsersController extends Controller
             'post_count'    => $post_count,
             'follow_count'   => $follow_count,
             'follower_count' => $follower_count,
-            //いいねカウント
             'like_count'     => $like_count,
             ]);
     }
     
-    //パスワード変更用
+    
     public function showPasswordForm(User $user)
     {
         return view('users.edit_password',['user_id'=>Auth::id()]);
@@ -283,33 +252,18 @@ class UsersController extends Controller
         $user_form = $request->all();
         unset($user_form['_token']);
         
-        //現在のパスワードが正しいかを調べる
          if(!(Hash::check($request->get('current-password'), auth()->user()->password))) {
             return redirect()->back()->with('change_password_error', '現在のパスワードが間違っています。');
-            \Debugbar::info('現在のパスワードが正しいかを調べる');
-            \Debugbar::info($user);
-            //return redirect('users/'.$user->id);
         }
-        //現在のパスワードと新しいパスワードが違っているかを調べる
+        
         if(strcmp($request->get('current-password'), $request->get('new-password')) == 0) {
-            return redirect()->back()->with('change_password_error', '新しいパスワードが現在のパスワードと同じです。違うパスワードを設定してください。');
-            \Debugbar::info('現在のパスワードと新しいパスワードが違っているかを調べる');
-            \Debugbar::info($user);
-            //return redirect('users/'.$user->id);
+            return redirect()->back()->with('change_password_error', '新しいパスワードは現在のパスワードとは別のパスワードで入力してください。');
         }
-         //パスワードを変更
+         
         $user = auth()->user();
         $user->password = bcrypt($request->get('new-password'));
         $user->fill($user_form)->save();
-        \Debugbar::info($user);
         return redirect('users/'.$user->id)->with('change_password_success', 'パスワードを変更しました。');
-    
-          
-       
-
     }
-    
-    
-   
     
 }
