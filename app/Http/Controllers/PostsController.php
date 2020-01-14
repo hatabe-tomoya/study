@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 use App\Post;
 use App\Comment;
 use App\Relationship;
@@ -17,13 +18,30 @@ class PostsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-   public function index(Post $post, Relationship $relationship)
-    {
+   public function index(Request $request, Post $post, Relationship $relationship)
+   {
        $posts = Post::latest()->paginate(6);
        $user = auth()->user();
        
+       //テスト
+       if($request->has('keyword')) {
+            $posts = Post::where('title', 'like', '%'.$request->get('keyword').'%')
+                       ->orWhere('body', 'like', '%'.$request->get('keyword').'%')->paginate(6);
+        }else{
+            $posts = Post::latest()->paginate(6);
+        }
+        
+       
        return view('posts.index', ['posts' => $posts, 'user' => $user]);
+          
     }
+    /*テスト検索用
+    public function searchIndex(Request $request)
+    {
+        $posts = Post::where('title', $request->title)-> get();
+        return view('posts.index', ['posts' => $posts]) ;
+    
+    }*/
 
 
     /**

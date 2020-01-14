@@ -4,6 +4,14 @@
     <div class="container">
         <div class="row">
             <h2>勉強法一覧</h2>
+            <div class="col-md-4">
+                <form class="form-inline" action="{{ url('posts/') }}" method="GET">
+                    <div class="form-group">
+                        <input type="text" name="keyword" value="{{$keyword}}" class="form-control" placeholder="キーワード検索">
+                        <input type="submit" value="検索" class="btn btn-info ml-1">
+                    </div>
+                </form>
+            </div>
         </div>
         
         <div class="row">
@@ -43,7 +51,7 @@
             @endforeach
         </div>
         <div class="my-4 d-flex justify-content-center">
-            {{ $posts->links() }}
+            {{ $posts->appends(['keyword' => Request::get('keyword')])->links() }}
         </div>
     </div>
 @endsection

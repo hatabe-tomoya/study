@@ -43,7 +43,10 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('users/{user}/follow', 'UsersController@follow')->name('follow');
     Route::delete('users/{user}/unfollow', 'UsersController@unfollow')->name('unfollow');
     
+    //テスト検索一覧
+    //Route::get('posts/searchindex', 'PostsController@searchIndex')->name('searchindex');
     Route::resource('posts', 'PostsController', ['only' => ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']]);
+    
     
     Route::resource('comments', 'CommentsController', ['only' => ['store']]);
     
