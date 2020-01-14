@@ -54,7 +54,7 @@
                                             <a class="nav-link" href="{{url('posts/create')}}">勉強法作成</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="{{ url('users/' .Auth::user()->id) }}">{!! nl2br(e(str_limit(Auth::user()->name, 40))) !!} </a>
+                                            <a class="nav-link" href="{{ url('users/' .Auth::user()->id) }}">{!! nl2br(e(str_limit(Auth::user()->name, 20))) !!} </a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" onclick="event.preventDefault();

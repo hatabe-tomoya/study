@@ -112,7 +112,7 @@ return [
     'starts_with' => 'The :attribute must start with one of the following: :values',
     'string' => 'The :attribute must be a string.',
     'timezone' => 'The :attribute must be a valid zone.',
-    'unique' => 'The :attribute has already been taken.',
+    'unique' => ':attribute はすでに登録済みです。別のメールアドレスを入力してください。',
     'uploaded' => 'The :attribute failed to upload.',
     'url' => 'The :attribute format is invalid.',
     'uuid' => 'The :attribute must be a valid UUID.',
@@ -150,6 +150,8 @@ return [
         'title'        => 'タイトル',
         'study_book'   => '参考書・教材',
         'body'         => '本文',
-        'result'       => '成果']
+        'result'       => '成果',
+        'email'        => 'このメールアドレス',
+        'password'     => 'パスワード']
 
 ];

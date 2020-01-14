@@ -7,7 +7,7 @@
             <div class="col-md-4">
                 <form class="form-inline" action="{{ url('posts/') }}" method="GET">
                     <div class="form-group">
-                        <input type="text" name="keyword" value="{{$keyword}}" class="form-control" placeholder="キーワード検索">
+                        <input type="text" name="keyword" value="{{$keyword}}" class="form-control" placeholder="キーワードを入力">
                         <input type="submit" value="検索" class="btn btn-info ml-1">
                     </div>
                 </form>
@@ -32,7 +32,7 @@
                                     @else
                                         <img src="{{ asset('storage/icon_image/' .$post->user->icon_image) }}" class="rounded-circle" width="15" height="15">
                                     @endif
-                                    <a href ="{{ url('users/' .$post->user->id) }}" class="text-secondary">{{ $post->user->name }}</a>
+                                    <a href ="{{ url('users/' .$post->user->id) }}" class="text-secondary">{!! nl2br(e(str_limit($post->user->name, 20))) !!}</a>
                                 </p>
                             </div>
                             <div class="float-right">

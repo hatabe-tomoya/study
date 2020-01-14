@@ -14,7 +14,7 @@
                         @endif
                     </div>
                     <div class="mt-3 d-flex justify-content-center">
-                        <h4 class="mb-0 font-weight-bold">{{ $user->name }}</h4>
+                        <h4 class="mb-0 font-weight-bold">{!! nl2br(e(str_limit($user->name, 20))) !!}</h4>
                     </div>
                     <div class="profile-edit pt-2">
                         @if ($user->id === Auth::user()->id)
@@ -104,7 +104,7 @@
                                                         <img src="{{ asset('storage/icon_image/' .$timeline->post->user->icon_image) }}" class="rounded-circle" width="15" height="15">
                                                     @endif
                                                     
-                                                    <a href ="{{ url('users/' .$timeline->post->user->id) }}" class="text-secondary">{{ $timeline->post->user->name }}</a>
+                                                    <a href ="{{ url('users/' .$timeline->post->user->id) }}" class="text-secondary">{!! nl2br(e(str_limit($timeline->post->user->name, 20))) !!}</a>
                                                 </p>
                                             </div>
                                             <div class="float-right">

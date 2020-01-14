@@ -12,7 +12,7 @@
                         <img src="{{ asset('storage/icon_image/' .$post->user->icon_image) }}" class="rounded-circle" width="50" height="50">
                     @endif
                     <div class="ml-2 d-flex flex-column">
-                        <p class="mb-0">{{ $post->user->name }}</p>
+                        <a href ="{{ url('users/' .$post->user->id) }}" class="text-secondary">{!! nl2br(e(str_limit($post->user->name, 20))) !!}</a>
                     </div>
                     <div class="d-flex justify-content-end flex-grow-1">
                         <p class="mb-0 text-secondary">{{ $post->created_at->format('Y-m-d H:i') }}</p>
@@ -104,8 +104,8 @@
                                 <img src="{{ asset('storage/icon_image/' .$comment->user->icon_image) }}" class="rounded-circle" width="50" height="50">
                             @endif
                             <div class="ml-2 d-flex flex-column">
-                                <p class="mb-0">{{ $comment->user->name }}</p>
-                                <a href="{{ url('users/' .$comment->user->id) }}" class="text-secondary">{{ $comment->user->screen_name }}</a>
+                               
+                               <a href="{{ url('users/' .$comment->user->id) }}" class="text-secondary">{!! nl2br(e(str_limit($comment->user->name, 20))) !!}</a>
                             </div>
                             <div class="d-flex justify-content-end flex-grow-1">
                                 <p class="mb-0 text-secondary">{{ $comment->created_at->format('Y-m-d H:i') }}</p>
@@ -133,7 +133,7 @@
                                         <img src="{{ asset('storage/icon_image/' .$user->icon_image) }}" class="rounded-circle" width="50" height="50">
                                     @endif
                                     <div class="ml-2 d-flex flex-column">
-                                        <p class="mb-0">{{ $user->name }}</p>
+                                        <p class="mb-0">{!! nl2br(e(str_limit($user->name, 20))) !!}</p>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
