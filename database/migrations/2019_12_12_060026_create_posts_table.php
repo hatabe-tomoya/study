@@ -18,7 +18,7 @@ class CreatePostsTable extends Migration
             $table->unsignedInteger('user_id')->comment('ユーザID');
             $table->string('title');
             $table->string('study_book');
-            $table->string('body');
+            $table->text('body');
             $table->string('result');
             $table->string('reference_image')->nullable();
 
