@@ -101,7 +101,7 @@
                             @if($comment->user->icon_image == null)
                                 <img src="{{ '/assets/img/itWz22pzRoBOwTB2Hz1qYGuKvbfvRXaCB94gzuf7.jpeg' }}" class="rounded-circle" width="50" height="50">
                             @else
-                                <img src="{{ $comment->user->icon_image) }}" class="rounded-circle" width="50" height="50">
+                                <img src="{{ $comment->user->icon_image }}" class="rounded-circle" width="50" height="50">
                             @endif
                             <div class="ml-2 d-flex flex-column">
                                
