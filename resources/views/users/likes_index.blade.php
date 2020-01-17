@@ -10,7 +10,7 @@
                         @if($user->icon_image == null)
                             <img src="{{ '/assets/img/itWz22pzRoBOwTB2Hz1qYGuKvbfvRXaCB94gzuf7.jpeg' }}" class="rounded-circle" width="100" height="100">
                         @else
-                            <img src="{{ $user->icon_image) }}" class="rounded-circle" width="100" height="100">
+                            <img src="{{ $user->icon_image }}" class="rounded-circle" width="100" height="100">
                         @endif
                     </div>
                     <div class="mt-3 d-flex justify-content-center">
