@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header p-3 w-100 d-flex">
                     @if($post->user->icon_image == null)
-                        <img src="{{ '/storage/icon_image/itWz22pzRoBOwTB2Hz1qYGuKvbfvRXaCB94gzuf7.jpeg' }}" class="rounded-circle" width="50" height="50">
+                        <img src="{{ '/assets/img/itWz22pzRoBOwTB2Hz1qYGuKvbfvRXaCB94gzuf7.jpeg' }}" class="rounded-circle" width="50" height="50">
                     @else
                         <img src="{{ $post->user->icon_image }}" class="rounded-circle" width="50" height="50">
                     @endif
@@ -99,9 +99,9 @@
                     <li class="list-group-item">
                         <div class="py-3 w-100 d-flex">
                             @if($comment->user->icon_image == null)
-                                <img src="{{ asset('storage/icon_image/itWz22pzRoBOwTB2Hz1qYGuKvbfvRXaCB94gzuf7.jpeg') }}" class="rounded-circle" width="50" height="50">
+                                <img src="{{ '/assets/img/itWz22pzRoBOwTB2Hz1qYGuKvbfvRXaCB94gzuf7.jpeg' }}" class="rounded-circle" width="50" height="50">
                             @else
-                                <img src="{{ asset('storage/icon_image/' .$comment->user->icon_image) }}" class="rounded-circle" width="50" height="50">
+                                <img src="{{ $comment->user->icon_image) }}" class="rounded-circle" width="50" height="50">
                             @endif
                             <div class="ml-2 d-flex flex-column">
                                

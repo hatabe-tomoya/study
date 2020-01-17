@@ -33,7 +33,7 @@
                             <label for="icon_image" class="col-md-4 col-form-label text-md-right">{{ __('messages.Icon Image') }}</label>
                             <div class="col-md-6 d-flex align-items-center">
                                 @if($user->icon_image == null)
-                                    <img src="{{ '/storage/icon_image/itWz22pzRoBOwTB2Hz1qYGuKvbfvRXaCB94gzuf7.jpeg' }}" class="rounded-circle mr-2" width="30" height="30">
+                                    <img src="{{ '/assets/img/itWz22pzRoBOwTB2Hz1qYGuKvbfvRXaCB94gzuf7.jpeg' }}" class="rounded-circle mr-2" width="30" height="30">
                                 @else
                                     <img src="{{ $user->icon_image }}" class="mr-2 rounded-circle" width="30" height="30" alt="icon_image">   
                                 @endif
