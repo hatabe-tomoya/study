@@ -11,6 +11,7 @@ use App\Relationship;
 use App\User;
 
 
+
 class PostsController extends Controller
 {
     /**
@@ -23,7 +24,7 @@ class PostsController extends Controller
        $posts = Post::latest()->paginate(6);
        $user = auth()->user();
        
-       //テスト
+       //キーワード検索
        if($request->has('keyword')) {
             $posts = Post::where('title', 'like', '%'.$request->get('keyword').'%')
                        ->orWhere('body', 'like', '%'.$request->get('keyword').'%')->paginate(6);
@@ -35,14 +36,7 @@ class PostsController extends Controller
        return view('posts.index', ['posts' => $posts, 'user' => $user]);
           
     }
-    /*テスト検索用
-    public function searchIndex(Request $request)
-    {
-        $posts = Post::where('title', $request->title)-> get();
-        return view('posts.index', ['posts' => $posts]) ;
-    
-    }*/
-
+   
 
     /**
      * Show the form for creating a new resource.

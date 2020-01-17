@@ -7,9 +7,9 @@
             <div class="card">
                 <div class="card-header p-3 w-100 d-flex">
                     @if($post->user->icon_image == null)
-                        <img src="{{ asset('storage/icon_image/itWz22pzRoBOwTB2Hz1qYGuKvbfvRXaCB94gzuf7.jpeg') }}" class="rounded-circle" width="50" height="50">
+                        <img src="{{ '/storage/icon_image/itWz22pzRoBOwTB2Hz1qYGuKvbfvRXaCB94gzuf7.jpeg' }}" class="rounded-circle" width="50" height="50">
                     @else
-                        <img src="{{ asset('storage/icon_image/' .$post->user->icon_image) }}" class="rounded-circle" width="50" height="50">
+                        <img src="{{ $post->user->icon_image }}" class="rounded-circle" width="50" height="50">
                     @endif
                     <div class="ml-2 d-flex flex-column">
                         <a href ="{{ url('users/' .$post->user->id) }}" class="text-secondary">{!! nl2br(e(str_limit($post->user->name, 20))) !!}</a>
@@ -128,9 +128,9 @@
                             <div class="form-group row mb-0">
                                 <div class="col-md-12 p-3 w-100 d-flex">
                                     @if($user->icon_image == null)
-                                        <img src="{{ asset('storage/icon_image/itWz22pzRoBOwTB2Hz1qYGuKvbfvRXaCB94gzuf7.jpeg') }}" class="rounded-circle" width="50" height="50">
+                                        <img src="{{ '/storage/icon_image/itWz22pzRoBOwTB2Hz1qYGuKvbfvRXaCB94gzuf7.jpeg' }}" class="rounded-circle" width="50" height="50">
                                     @else
-                                        <img src="{{ asset('storage/icon_image/' .$user->icon_image) }}" class="rounded-circle" width="50" height="50">
+                                        <img src="{{ $user->icon_image }}" class="rounded-circle" width="50" height="50">
                                     @endif
                                     <div class="ml-2 d-flex flex-column">
                                         <p class="mb-0">{!! nl2br(e(str_limit($user->name, 20))) !!}</p>

@@ -11,6 +11,7 @@ use App\Relationship;
 use App\Like;
 use Auth;
 use Hash;
+use Storage;
 
 
 class UsersController extends Controller
@@ -42,7 +43,7 @@ class UsersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
         //
     }
@@ -102,8 +103,8 @@ class UsersController extends Controller
         $user_form = $request->all();
         
         if (isset($user_form['icon_image'])) {
-        $path = $request->file('icon_image')->store('public/icon_image');
-        $user->icon_image = basename($path);
+        $path = Storage::disk('s3')->putFile('/',$user_form['icon_image'],'public');
+        $user->icon_image = Storage::disk('s3')->url($path);
         unset($user_form['icon_image']);
       } elseif (isset($request->remove)) {
         $user->icon_image = null;

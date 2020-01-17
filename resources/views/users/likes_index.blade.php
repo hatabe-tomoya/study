@@ -99,9 +99,9 @@
                                             <div class ="user">
                                                 <p class ="float-left mb-1">
                                                     @if($timeline->post->user->icon_image == null)
-                                                        <img src="{{ asset('storage/icon_image/itWz22pzRoBOwTB2Hz1qYGuKvbfvRXaCB94gzuf7.jpeg') }}" class="rounded-circle" width="15" height="15">
+                                                        <img src="{{ '/storage/icon_image/itWz22pzRoBOwTB2Hz1qYGuKvbfvRXaCB94gzuf7.jpeg' }}" class="rounded-circle" width="15" height="15">
                                                     @else
-                                                        <img src="{{ asset('storage/icon_image/' .$timeline->post->user->icon_image) }}" class="rounded-circle" width="15" height="15">
+                                                        <img src="{{ $timeline->post->user->icon_image }}" class="rounded-circle" width="15" height="15">
                                                     @endif
                                                     
                                                     <a href ="{{ url('users/' .$timeline->post->user->id) }}" class="text-secondary">{!! nl2br(e(str_limit($timeline->post->user->name, 20))) !!}</a>
