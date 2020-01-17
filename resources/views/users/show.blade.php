@@ -8,7 +8,7 @@
                 <div class="profile border-black">
                     <div class="p-3 d-flex justify-content-center">
                         @if($user->icon_image == null)
-                            <img src="{{ '/storage/icon_image/itWz22pzRoBOwTB2Hz1qYGuKvbfvRXaCB94gzuf7.jpeg' }}" class="rounded-circle" width="100" height="100">
+                            <img src="{{ '/assets/img/itWz22pzRoBOwTB2Hz1qYGuKvbfvRXaCB94gzuf7.jpeg' }}" class="rounded-circle" width="100" height="100">
                         @else
                             <img src="{{ $user->icon_image }}" class="rounded-circle" width="100" height="100">
                         @endif
@@ -100,7 +100,7 @@
                                             <div class ="user">
                                                 <p class ="float-left mb-1">
                                                     @if($timeline->user->icon_image == null)
-                                                        <img src="{{ '/storage/icon_image/itWz22pzRoBOwTB2Hz1qYGuKvbfvRXaCB94gzuf7.jpeg' }}" class="rounded-circle" width="15" height="15" >
+                                                        <img src="{{ '/assets/img/itWz22pzRoBOwTB2Hz1qYGuKvbfvRXaCB94gzuf7.jpeg' }}" class="rounded-circle" width="15" height="15" >
                                                     @else
                                                          <img src="{{ $user->icon_image }}" class="rounded-circle" width="15" height="15">
                                                     @endif
