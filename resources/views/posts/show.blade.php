@@ -128,7 +128,7 @@
                             <div class="form-group row mb-0">
                                 <div class="col-md-12 p-3 w-100 d-flex">
                                     @if($user->icon_image == null)
-                                        <img src="{{ '/storage/icon_image/itWz22pzRoBOwTB2Hz1qYGuKvbfvRXaCB94gzuf7.jpeg' }}" class="rounded-circle" width="50" height="50">
+                                        <img src="{{ '/assets/img/itWz22pzRoBOwTB2Hz1qYGuKvbfvRXaCB94gzuf7.jpeg' }}" class="rounded-circle" width="50" height="50">
                                     @else
                                         <img src="{{ $user->icon_image }}" class="rounded-circle" width="50" height="50">
                                     @endif
