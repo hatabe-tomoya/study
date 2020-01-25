@@ -38,10 +38,10 @@ class User extends Authenticatable
         return $this->hasMany(Post::class);
     }
     
-    //アカウント編集用バリデーション
+    
     protected $guarded = array('id');
 
-    // 以下を追記
+    
     public static $rules = array(
         'name' => 'required|string|max:255',
         'icon_image'       => 'file|image|mimes:jpeg,png,jpg|max:2048',
